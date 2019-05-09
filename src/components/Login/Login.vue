@@ -54,11 +54,12 @@
     }
 </script>
 
-<style scoped>me
+<style>
     .login-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-content: center;
+        padding: 20px 50px;
     }
 </style>

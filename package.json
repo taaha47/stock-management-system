@@ -14,8 +14,12 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@types/node": "^12.0.0",
     "core-js": "^2.6.5",
     "knex": "^0.16.5",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^4.0.7",
+    "typeorm": "^0.2.17",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuetify": "^1.5.5"
