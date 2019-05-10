@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import demo from "./components/demo/demo.vue"
-import HelloWorld from "./components/HelloWorld.vue";
 import Login from "./components/Login/Login.vue";
+import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
@@ -12,10 +12,7 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      component: HelloWorld,
-      props: {
-        msg: "It was childish to feel disappointed, but childishness comes almost as naturally to a man as to a child"
-      }
+      component: Home
     },
     {
       path: '/login',
