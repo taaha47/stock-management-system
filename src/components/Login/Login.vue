@@ -22,6 +22,7 @@
 </template>
 
 <script>
+    import {ipcRenderer} from "electron";
     export default {
         data() {
             return {
@@ -38,8 +39,7 @@
                         localStorage.setItem('jwt', 'exist');
 
                         if (localStorage.getItem('jwt') !== null) {
-                            this.$emit('loggedIn');
-                            this.$router.push('/');
+                            ipcRenderer.sendSync('add-item', {"name": "taaha"});
                         }
                     } else {
                         alert("cant log you in");

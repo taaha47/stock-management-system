@@ -1,22 +1,43 @@
 'use strict'
 
 import { app, protocol, BrowserWindow } from 'electron';
-import {
-  createProtocol,
-  installVueDevtools
-} from 'vue-cli-plugin-electron-builder/lib'
-const isDevelopment = process.env.NODE_ENV !== 'production';
+import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib'
+import { createConnection } from 'typeorm';
+import {Article} from "./model/Article.scheme";
+import "reflect-metadata";
+import {ipcMain} from "electron";
 
-let win: any;
+
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
+let win: Electron.BrowserWindow | null;
 
 // Scheme must be registered before the app is ready
-protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true } }])
+protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true } }]);
 
-function createWindow () {
+const createWindow  = async() => {
   // Create the browser window.
   win = new BrowserWindow({ width: 800, height: 600, webPreferences: {
     nodeIntegration: true
   }});
+
+  //define database connection
+  const connectDb = await createConnection({
+      type: "sqlite",
+      synchronize: true,
+      logger: "simple-console",
+      database: "./src/assets/data/database.sqlite",
+      entities: [Article]
+  });
+
+  const itemRepo = connectDb.getRepository(Article);
+
+  try {
+    const item = await itemRepo.create({"name": "hamid benbiba"});
+    await itemRepo.save(item);
+  } catch (e) {
+      throw e;
+  }
 
   //win.once("ready-to-show", () => {win.show()});
 
@@ -81,3 +102,10 @@ if (isDevelopment) {
     })
   }
 }
+
+ipcMain.on("add-item", (event: any, item: any) => {
+    console.log("test");
+    event.returnValue
+});
+
+
