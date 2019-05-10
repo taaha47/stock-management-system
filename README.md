@@ -1,5 +1,23 @@
 # stock-management
 
+happily made with
+    - cli-vue-plugin
+    - cli-vue-plugin-electron-builder
+    - @vue/cli-plugin-typescript
+
+
+to generate project starter:
+    - npm install -g @vue/cli
+    - vue create app-name
+    - cd app-name
+    - vue add electron-builder
+    - vue add vuetify
+    - vue add @vue/typescript
+
+## useful links
+    - https://nklayman.github.io/vue-cli-plugin-electron-builder/
+
+
 ## Project setup
 ```
 npm install
