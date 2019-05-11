@@ -22,7 +22,7 @@ happily made with
     - postinstall for windows                  : npm run postinstall-win
     - run unit tests                           : npm run test
     - linting                                  : npm run lint
-    
+
 ##### useful links:
     - https://nklayman.github.io/vue-cli-plugin-electron-builder/
     - https://medium.freecodecamp.org/creating-an-electron-app-using-angular-and-sqlite3-24ca7d892810
