@@ -1,12 +1,11 @@
-# stock-management
+### Stock Management System
 
 happily made with
-    - cli-vue-plugin
-    - cli-vue-plugin-electron-builder
-    - @vue/cli-plugin-typescript
+- cli-vue-plugin
+- cli-vue-plugin-electron-builder
+- @vue/cli-plugin-typescript
 
-
-to generate project starter:
+##### To generate project starter:
     - npm install -g @vue/cli
     - vue create app-name
     - cd app-name
@@ -14,34 +13,14 @@ to generate project starter:
     - vue add vuetify
     - vue add @vue/typescript
 
-## useful links
+##### Project setup
+    - install dependencies                     : npm install
+    - compile and hot reload for development   : npm run eletron:serve
+    - Generate build for production            : npm run electron:build
+    - build for windows                        : npm run electron:build-win
+    - run unit tests                           : npm run test
+    - linting                                  : npm run lint
+    
+##### useful links:
     - https://nklayman.github.io/vue-cli-plugin-electron-builder/
-
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    - https://medium.freecodecamp.org/creating-an-electron-app-using-angular-and-sqlite3-24ca7d892810
