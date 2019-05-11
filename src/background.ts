@@ -2,11 +2,9 @@
 
 import { app, protocol, BrowserWindow } from 'electron';
 import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib'
-import { createConnection } from 'typeorm';
-import {Article} from "./model/Article.scheme";
-import "reflect-metadata";
 import {ipcMain} from "electron";
-
+import DatabaseConnection from "./DatabaseConnection";
+import {articleRepositoryCb} from "./repository/ArticleRepository";
 
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -20,24 +18,6 @@ const createWindow  = async() => {
   win = new BrowserWindow({ width: 800, height: 600, webPreferences: {
     nodeIntegration: true
   }});
-
-  //define database connection
-  const connectDb = await createConnection({
-      type: "sqlite",
-      synchronize: true,
-      logger: "simple-console",
-      database: "./src/assets/data/database.sqlite",
-      entities: [Article]
-  });
-
-  const itemRepo = connectDb.getRepository(Article);
-
-  try {
-    const item = await itemRepo.create({"name": "hamid benbiba"});
-    await itemRepo.save(item);
-  } catch (e) {
-      throw e;
-  }
 
   //win.once("ready-to-show", () => {win.show()});
 
@@ -103,9 +83,7 @@ if (isDevelopment) {
   }
 }
 
-ipcMain.on("add-item", (event: any, item: any) => {
-    console.log("test");
-    event.returnValue
-});
-
+ipcMain.on("article-repository",async (event: any, element: any) =>
+    articleRepositoryCb(DatabaseConnection, element, event)
+);
 
