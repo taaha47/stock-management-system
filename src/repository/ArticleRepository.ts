@@ -8,19 +8,21 @@ export const articleRepositoryCb = async (dbConnection: any, element: any, event
     switch (action) {
         case "add-article":
             try {
-                const item = await itemRepo.create({"name": "beauty"});
+                const item = await itemRepo.create({"name": payload.name});
                 await itemRepo.save(item);
                 event.returnValue = "success";
             } catch (e) {
-                event.returnValue = "error";
+                event.returnValue = e.message;
             }
             break;
         case "get-articles":
             try {
                 const items = await itemRepo.find();
-                event.returnValue = items[0].name;
+                if (items && items.length !== 0)
+                    event.returnValue = items[items.length - 1].name;
+                event.returnValue = "no data";
             } catch (e) {
-                event.returnValue = "error";
+                event.returnValue = e.message;
             }
             break;
         default:

@@ -4,7 +4,7 @@
             {{names}}
         </p>
         <h4>Login</h4>
-        <form>
+        <form @submit.prevent="handleSubmit">
             <label for="email" >E-Mail Address</label>
             <div>
                 <input id="email" type="email" v-model="email" required autofocus>
@@ -16,9 +16,7 @@
                 </div>
             </div>
             <div>
-                <button type="submit" @click="handleSubmit">
-                    Login
-                </button>
+                <button type="submit">Login</button>
             </div>
         </form>
     </div>
@@ -43,14 +41,16 @@
         methods: {
             handleSubmit(e) {
                 e.preventDefault();
-                validateUser(this.userName, this.password).then(res => {
+                const email = this.email;
+                const password = this.password;
+                validateUser(email, password).then(res => {
                     if (res === true) {
                         //localStorage.setItem('user', this.userName);
                         //localStorage.setItem('jwt', 'exist');
                         const val = ipcRenderer.sendSync('article-repository', {
                             action: "add-article",
                             payload: {
-                              name: "value"
+                              name: email
                             }
                         });
                         alert(val);
