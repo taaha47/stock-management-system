@@ -18,6 +18,8 @@ happily made with
     - compile and hot reload for development   : npm run eletron:serve
     - Generate build for production            : npm run electron:build
     - build for windows                        : npm run electron:build-win
+    - postinstall package dependencie s        : npm run postinstall
+    - postinstall for windows                  : npm run postinstall-win
     - run unit tests                           : npm run test
     - linting                                  : npm run lint
     

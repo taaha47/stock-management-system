@@ -10,6 +10,7 @@
     "electron:build-win": "vue-cli-service electron:build --windows",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
+    "postinstall-win": "electron-builder install-app-deps --arch=x64 --platform=win32",
     "postuninstall": "electron-builder install-app-deps"
   },
   "main": "background.js",
