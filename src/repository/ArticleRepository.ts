@@ -1,4 +1,4 @@
-import {Article} from "../entities/Article.scheme";
+import {Article} from "./entities/Article.scheme";
 
 export const articleRepositoryCb = async (dbConnection: any, element: any, event: any) => {
     const dbInstance = await dbConnection.getInstance();

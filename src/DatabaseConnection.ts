@@ -1,4 +1,4 @@
-import {Article} from "./entities/Article.scheme";
+import {Article} from "./repository/entities/Article.scheme";
 import {createConnection, Connection} from "typeorm";
 import "reflect-metadata";
 

@@ -7,7 +7,11 @@
       <v-btn flat to="/login">Login</v-btn>
       <v-btn flat to="/about">About</v-btn>
     </v-toolbar>
-    <router-view/>
+    <v-content>
+      <v-container fluid>
+        <router-view/>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
