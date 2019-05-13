@@ -22,3 +22,10 @@ yarn-error.log*
 
 #Electron-builder output
 /dist_electron
+
+#sqlite file
+*.sqlite
+
+#js generated files
+*.js
+*.map
