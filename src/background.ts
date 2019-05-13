@@ -1,33 +1,34 @@
 'use strict'
 
 import { app, protocol, BrowserWindow } from 'electron';
-import {
-  createProtocol,
-  installVueDevtools
-} from 'vue-cli-plugin-electron-builder/lib'
-const isDevelopment = process.env.NODE_ENV !== 'production';
+import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib'
+import {ipcMain} from "electron";
+import DatabaseConnection from "./DatabaseConnection";
+import {articleRepositoryCb} from "./repository/ArticleRepository";
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let win;
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
+let win: Electron.BrowserWindow | null;
 
 // Scheme must be registered before the app is ready
-protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true } }])
+protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true } }]);
 
-function createWindow () {
+const createWindow  = async() => {
   // Create the browser window.
   win = new BrowserWindow({ width: 800, height: 600, webPreferences: {
     nodeIntegration: true
-  } })
+  }});
+
+  //win.once("ready-to-show", () => {win.show()});
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app');
     // Load the index.html when not in development
-    win.loadURL('app://./index.html')
+    win.loadURL('app://./index.html');
   }
 
   win.on('closed', () => {
@@ -64,8 +65,8 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
-  createWindow()
-})
+  createWindow();
+});
 
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
@@ -81,3 +82,8 @@ if (isDevelopment) {
     })
   }
 }
+
+ipcMain.on("article-repository",async (event: any, element: any) =>
+    articleRepositoryCb(DatabaseConnection, element, event)
+);
+
