@@ -8,9 +8,7 @@
       <v-btn flat to="/about">About</v-btn>
     </v-toolbar>
     <v-content>
-      <v-container fluid>
-        <router-view/>
-      </v-container>
+      <router-view/>
     </v-content>
   </v-app>
 </template>
