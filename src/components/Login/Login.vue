@@ -60,6 +60,8 @@
 
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
+  import {ipcRenderer} from "electron";
+
 
   @Component
   export default class Login extends Vue {
@@ -69,8 +71,17 @@
     loading: boolean = false;
 
     handleSubmit(e: Event) {
-        console.log(this.password);
-        this.loading = true;
+      this.loading = true;
+      const auth = ipcRenderer.sendSync("user-service", {
+        action: "authenticate",
+        payload: {
+          password: this.password
+        }
+      });
+      if (auth === "success") {
+          console.log(auth);
+          this.loading = false;
+      }
     }
 
   }

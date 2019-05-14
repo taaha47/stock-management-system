@@ -5,6 +5,8 @@ import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-buil
 import {ipcMain} from "electron";
 import DatabaseConnection from "./DatabaseConnection";
 import {articleRepositoryCb} from "./repository/ArticleRepository";
+import {ipcPayload} from "./interfaces/interfaces";
+import { UserServiceCb } from "./services/UserService";
 
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -15,9 +17,12 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true
 
 const createWindow  = async() => {
   // Create the browser window.
-  win = new BrowserWindow({ width: 800, height: 600, webPreferences: {
+  win = new BrowserWindow({ webPreferences: {
     nodeIntegration: true
   }});
+
+  win.maximize();
+  //win.setFullScreen(true);
 
   //win.once("ready-to-show", () => {win.show()});
 
@@ -83,7 +88,11 @@ if (isDevelopment) {
   }
 }
 
-ipcMain.on("article-repository",async (event: any, element: any) =>
-    articleRepositoryCb(DatabaseConnection, element, event)
+ipcMain.on("article-repository",async (event: any, payload: ipcPayload) =>
+  articleRepositoryCb(DatabaseConnection, payload, event)
+);
+
+ipcMain.on("user-service", async (event: any, payload: ipcPayload) =>
+  UserServiceCb(DatabaseConnection, payload, event)
 );
 
