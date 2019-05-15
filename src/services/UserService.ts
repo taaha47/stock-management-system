@@ -12,9 +12,8 @@ export const UserServiceCb: any = async (dbConnection: any, element: ipcPayload,
     case "authenticate":
       const {password} = payload;
       try {
-        const user = await userRepo.createQueryBuilder("user").where("user.username = :username", {username: "admin"});
+        const user = await userRepo.createQueryBuilder("user").where("user.username = :username", {username: "admin"}).getOne();
         const auth = await bcrypt.compare(user.passwordHash, password);
-        console.log(auth);
         event.returnValue = "success";
       } catch(e) {
         event.returnValue = "error";
