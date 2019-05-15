@@ -79,8 +79,10 @@
         }
       });
       if (auth === "success") {
-          console.log(auth);
           this.loading = false;
+          this.$router.push('/');
+      } else {
+          this.$router.push('/about')
       }
     }
 
