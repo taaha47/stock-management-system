@@ -46,6 +46,12 @@ const actions = {
         } else {
             router.push("/login");
         }
+    },
+    logout({commit, state}: any) {
+        //async clean work here
+        commit("setUsername", "");
+        commit("setRole", -1);
+        router.push("/login");
     }
 };
 

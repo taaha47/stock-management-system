@@ -1,22 +1,32 @@
 <template>
-  <v-fab-transition>
+  <v-fab-transition hide-on-leave>
     <v-btn
-      dark
+      @click="logout"
       fab
+      flat
+      color="grey"
       fixed
       bottom
       right
+      :loading="loading"
     >
-      <v-icon></v-icon>
+      <v-icon>logout</v-icon>
     </v-btn>
   </v-fab-transition>
 </template>
 
-<script>
+<script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
 
   @Component
-  export default class LogoutButton extends Vue{}
+  export default class LogoutButton extends Vue{
+    loading: boolean = false;
+
+    logout(e: Event) {
+      this.loading = true;
+      this.$store.dispatch("logout");
+    }
+  }
 </script>
 
 <style scoped>
