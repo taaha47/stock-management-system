@@ -3,6 +3,7 @@ import Router, {Route} from 'vue-router';
 import demo from "./components/demo/demo.vue"
 import Login from "./components/Login/Login.vue";
 import Home from "./views/Home.vue";
+import DashboardLayout from "./components/DashboardLayout/DashboardLayout.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -22,22 +23,26 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
-      beforeEnter: requireAuth
+      name: 'dashboard-layout',
+      component: DashboardLayout,
+      beforeEnter: requireAuth,
+      children: [
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          component: Home
+        },
+        {
+          path: 'about',
+          name: 'about',
+          component: demo
+        },
+      ]
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
-      meta: {
-        guest: true
-      }
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: demo
     }
   ]
 });

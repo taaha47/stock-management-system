@@ -42,9 +42,9 @@ const actions = {
         if (auth === "success") {
             commit("setUsername", "admin");
             commit("setRole", 0);
-            router.push("/");
+            router.push("/dashboard");
         } else {
-            router.push("/admin");
+            router.push("/login");
         }
     }
 };

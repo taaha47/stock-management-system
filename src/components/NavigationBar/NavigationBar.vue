@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <v-toolbar dark flat height="80">
-      <span>Stock management System</span>
-      <v-spacer></v-spacer>
-      <v-btn flat to="/">Home</v-btn>
-      <v-btn flat to="/login">Login</v-btn>
-      <v-btn flat to="/about">About</v-btn>
-    </v-toolbar>
-    <main>
-      <slot />
-    </main>
-  </div>
+  <v-toolbar dark flat height="80">
+    <span>Stock management System</span>
+    <v-spacer></v-spacer>
+    <v-btn flat to="/dashboard">Home</v-btn>
+    <v-btn flat to="/about">menu1</v-btn>
+    <v-btn flat to="/about">menu2</v-btn>
+    <v-btn flat to="/about">About</v-btn>
+  </v-toolbar>
 </template>
 
 <script lang="ts">
