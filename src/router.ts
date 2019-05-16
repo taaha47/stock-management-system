@@ -1,10 +1,21 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import Router, {Route} from 'vue-router';
 import demo from "./components/demo/demo.vue"
 import Login from "./components/Login/Login.vue";
 import Home from "./views/Home.vue";
+import store from "./store";
 
 Vue.use(Router);
+
+function requireAuth(to: Route, from: Route, next: any) {
+  if (store.getters.activeUser !== "") {
+    store.getters.isAdmin
+      ? next()
+      : next("/login");
+  } else {
+    next("/login");
+  }
+}
 
 let router = new Router({
   base: process.env.BASE_URL,
@@ -12,7 +23,8 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      beforeEnter: requireAuth
     },
     {
       path: '/login',
@@ -23,27 +35,11 @@ let router = new Router({
       }
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: demo,
-      meta: {
-        requiresAuth: true
-      }
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      //component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
       path: '/about',
       name: 'about',
       component: demo
     }
   ]
-});
-
-router.beforeEach((to, from, next) => {
-  next();
 });
 
 export default router;

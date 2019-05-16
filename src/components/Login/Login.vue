@@ -59,9 +59,7 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
-  import {ipcRenderer} from "electron";
-
+  import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
   @Component
   export default class Login extends Vue {
@@ -72,20 +70,8 @@
 
     handleSubmit(e: Event) {
       this.loading = true;
-      const auth = ipcRenderer.sendSync("user-service", {
-        action: "authenticate",
-        payload: {
-          password: this.password
-        }
-      });
-      if (auth === "success") {
-          this.loading = false;
-          this.$router.push('/');
-      } else {
-          this.$router.push('/about')
-      }
+      this.$store.dispatch("authenticate", this.password);
     }
-
   }
 
 </script>
