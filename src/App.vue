@@ -1,17 +1,23 @@
 <template>
   <v-app>
-    <v-toolbar dark flat height="80">
-      <span>Stock management System</span>
-      <v-spacer></v-spacer>
-      <v-btn flat to="/">Home</v-btn>
-      <v-btn flat to="/login">Login</v-btn>
-      <v-btn flat to="/about">About</v-btn>
-    </v-toolbar>
+    <NavigationBar />
     <v-content>
       <router-view/>
     </v-content>
   </v-app>
 </template>
+
+<script lang="ts">
+  import NavigationBar from "./components/NavigationBar/NavigationBar";
+  import { Component, Vue } from 'vue-property-decorator';
+
+  @Component({
+    components: {
+      NavigationBar
+    }
+  })
+  export default class App extends Vue{}
+</script>
 
 <style lang="stylus">
 #app
