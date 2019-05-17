@@ -4,7 +4,6 @@ import { app, protocol, BrowserWindow } from 'electron';
 import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib'
 import {ipcMain} from "electron";
 import DatabaseConnection from "./DatabaseConnection";
-import {articleRepositoryCb} from "./repository/ArticleRepository";
 import {ipcPayload} from "./interfaces/interfaces";
 import { UserServiceCb } from "./services/UserService";
 
@@ -87,10 +86,6 @@ if (isDevelopment) {
     })
   }
 }
-
-ipcMain.on("article-repository",async (event: any, payload: ipcPayload) =>
-  articleRepositoryCb(DatabaseConnection, payload, event)
-);
 
 ipcMain.on("user-service", async (event: any, payload: ipcPayload) =>
   UserServiceCb(DatabaseConnection, payload, event)
