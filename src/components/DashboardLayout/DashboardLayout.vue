@@ -1,9 +1,11 @@
 <template>
-  <v-content>
+  <v-container>
     <NavigationBar />
-    <router-view/>
-    <LogoutButton />
-  </v-content>
+    <v-content>
+      <router-view/>
+      <LogoutButton />
+    </v-content>
+  </v-container>
 </template>
 
 <script lang="ts">
