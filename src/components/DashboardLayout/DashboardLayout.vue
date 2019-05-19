@@ -9,8 +9,8 @@
 </template>
 
 <script lang="ts">
-  import NavigationBar from "../NavigationBar/NavigationBar";
-  import LogoutButton from "../LogoutButton/LogoutButton";
+  import NavigationBar from "../NavigationBar/NavigationBar.vue";
+  import LogoutButton from "../LogoutButton/LogoutButton.vue";
   import { Component, Vue } from 'vue-property-decorator';
 
     @Component({

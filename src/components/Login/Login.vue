@@ -64,7 +64,7 @@
   @Component
   export default class Login extends Vue {
     password: string = "";
-    rules: any[] = [v => !!v || "a password is required"];
+    rules: any[] = [(v: boolean) => !!v || "a password is required"];
     valid: boolean = false;
     loading: boolean = false;
 

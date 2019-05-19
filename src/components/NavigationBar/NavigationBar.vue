@@ -15,6 +15,7 @@
       v-model="drawer"
       :mini-variant="mini"
       absolute
+      permanent
       dark
     >
       <v-list>
@@ -68,7 +69,7 @@
 
   @Component
   export default class NavigationBar extends Vue {
-      drawer: boolean = null;
+      drawer: boolean | null = null;
       items: any = [
         { title: 'Acceuil', icon: 'dashboard', path: "/dashboard" },
         { title: 'A propos', icon: 'question_answer', path: "/about" }
