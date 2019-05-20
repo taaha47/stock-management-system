@@ -1,11 +1,11 @@
 <template>
-  <v-container>
+  <v-layout fill-height class="layout-container">
     <NavigationBar />
     <v-content>
       <router-view/>
       <LogoutButton />
     </v-content>
-  </v-container>
+  </v-layout>
 </template>
 
 <script lang="ts">
@@ -22,6 +22,10 @@
     export default class DashboardLayout extends Vue{}
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+  .layout-container {
+    display flex;
+    flex-direction row;
+    justify-content space-between;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap>
+  <div>
     <v-btn
       fab
       flat
@@ -14,7 +14,6 @@
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="mini"
-      absolute
       permanent
       dark
     >
@@ -61,7 +60,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-  </v-layout>
+  </div>
 </template>
 
 <script lang="ts">
@@ -74,7 +73,7 @@
         { title: 'Acceuil', icon: 'dashboard', path: "/dashboard" },
         { title: 'A propos', icon: 'question_answer', path: "/about" }
       ];
-      mini: boolean = true;
+      mini: boolean = false;
 
       handleItemClick(path: string) {
           this.$router.push(path);
