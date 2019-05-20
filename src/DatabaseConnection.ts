@@ -1,4 +1,7 @@
 import {User} from "./repository/entities/User.scheme";
+import {Article} from "./repository/entities/Article.scheme";
+import {Category} from "./repository/entities/Category.scheme";
+import {Stock} from "./repository/entities/Stock.scheme";
 import {createConnection, Connection} from "typeorm";
 import "reflect-metadata";
 
@@ -15,7 +18,7 @@ export default class DatabaseConnection {
                     synchronize: true,
                     logger: "simple-console",
                     database: "./src/assets/data/database.sqlite",
-                    entities: [User]
+                    entities: [User, Article, Category, Stock]
                 });
             } catch (e) {
                 console.log("Unable to connect to database");
