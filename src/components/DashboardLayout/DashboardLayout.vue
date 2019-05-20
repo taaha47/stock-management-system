@@ -2,9 +2,11 @@
   <v-layout fill-height class="layout-container">
     <NavigationBar />
     <v-content>
-      <router-view/>
-      <LogoutButton />
+      <v-container class="content-container">
+        <router-view/>
+      </v-container>
     </v-content>
+    <LogoutButton />
   </v-layout>
 </template>
 
@@ -27,5 +29,9 @@
     display flex;
     flex-direction row;
     justify-content space-between;
+  }
+
+  .content-container {
+    padding 80px 30px;
   }
 </style>
