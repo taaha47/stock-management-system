@@ -16,7 +16,4 @@ export class Article {
 
     @ManyToOne(type => Category, category => category.articles)
     category: Category;
-
-    @OneToOne(type => Stock, stock => stock.article)
-    stock: Stock;
 }

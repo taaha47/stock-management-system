@@ -13,7 +13,7 @@ export class Stock {
     @Column({default: "stock base sur rabat"})
     description: string;
 
-    @OneToOne(type => Article, article => article.stock)
+    @OneToOne(type => Article)
     @JoinColumn()
     article: Article;
 
