@@ -8,6 +8,9 @@ export class Category {
     id: number;
 
     @Column()
+    code: string;
+
+    @Column()
     name: string;
 
     @Column()
