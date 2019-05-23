@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 
 //[todo] add an env file, store hash round value 10.
-@Entity()
+@Entity({name: "user"})
 export class User {
     @BeforeInsert()
     @BeforeUpdate()
@@ -24,4 +24,7 @@ export class User {
 
     @Column()
     passwordHash: string;
+
+    @Column()
+    role: string;
 }

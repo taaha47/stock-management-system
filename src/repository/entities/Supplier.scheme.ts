@@ -1,7 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
 import {PurchaseOrder} from "./PurchaseOrder.scheme";
 
-@Entity()
+@Entity({name: "supplier"})
 export class Supplier {
 
   @PrimaryGeneratedColumn()

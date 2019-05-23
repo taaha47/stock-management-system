@@ -2,7 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable
 import {Supplier} from "./Supplier.scheme";
 import {Product} from "./Product.scheme";
 
-@Entity()
+@Entity({name: "purchase_order"})
 export class PurchaseOrder {
 
   @PrimaryGeneratedColumn()
