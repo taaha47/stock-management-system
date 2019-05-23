@@ -1,25 +1,19 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from 'typeorm';
-import {Article} from "./Article.scheme";
+import {Product} from "./Product.scheme";
 
 @Entity()
 export class Stock {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    stk_id: number;
 
-    @Column({default: "1"})
-    identifier: string;
+    @Column({default: "none"})
+    stk_code: string;
 
-    @Column({default: "stock base sur rabat"})
-    description: string;
-
-    @OneToOne(type => Article)
+    @OneToOne(type => Product)
     @JoinColumn()
-    article: Article;
+    article: Product;
 
     @Column()
-    quantity: number;
-
-    @Column()
-    unit: string;
+    stk_quantity: number;
 }

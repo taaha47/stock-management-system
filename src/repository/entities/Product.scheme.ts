@@ -1,19 +1,21 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne} from 'typeorm';
 import {Category} from "./Category.scheme";
-import {Stock} from "./Stock.scheme";
 
 @Entity()
-export class Article {
+export class Product {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    prd_id: number;
 
     @Column()
-    name: string;
+    prd_name: string;
 
     @Column()
-    description: string;
+    prd_packaging: string;
 
-    @ManyToOne(type => Category, category => category.articles)
+    @Column()
+    prd_description: string;
+
+    @ManyToOne(type => Category, category => category.products)
     category: Category;
 }
