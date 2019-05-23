@@ -12,7 +12,7 @@ export class Stock {
 
     @OneToOne(type => Product)
     @JoinColumn()
-    article: Product;
+    product: Product;
 
     @Column()
     stk_quantity: number;
