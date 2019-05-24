@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, OneToMany } from 'typeorm';
-import {Category, PurchaseOrderLine} from ".";
+import {Category, PurchaseOrderLine, CommandLine} from ".";
 
 @Entity({name: "product"})
 export class Product {
@@ -20,5 +20,8 @@ export class Product {
     category: Category;
 
     @OneToMany(type => PurchaseOrderLine, poLine => poLine.prd)
-    poLines: PurchaseOrderLine[]
+    poLines: PurchaseOrderLine[];
+
+    @OneToMany(type => CommandLine, cmdLine => cmdLine.cmd)
+    cmdLines: CommandLine[];
 }
