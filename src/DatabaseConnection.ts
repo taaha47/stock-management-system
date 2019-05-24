@@ -1,4 +1,4 @@
-import {User, Category, Supplier, Product, Stock, PurchaseOrder} from "./repository/entities";
+import { User, Category, Supplier, Product, Stock, PurchaseOrder, PurchaseOrderLine } from "./repository/entities";
 import {createConnection, Connection} from "typeorm";
 import "reflect-metadata";
 
@@ -14,9 +14,10 @@ export default class DatabaseConnection {
                     type: "sqlite",
                     logger: "simple-console",
                     database: "./src/assets/data/database.sqlite",
-                    entities: [User, Category, Supplier, Product, Stock, PurchaseOrder]
+                    entities: [User, Category, Supplier, Product, Stock, PurchaseOrder, PurchaseOrderLine]
                 });
             } catch (e) {
+                console.log(e.message);
                 console.log("Unable to connect to database");
             }
         }

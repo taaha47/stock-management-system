@@ -1,5 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany} from 'typeorm';
 import {Supplier, Product} from ".";
+import { PurchaseOrderLine } from ".";
 
 @Entity({name: "purchase_order"})
 export class PurchaseOrder {
@@ -16,7 +17,7 @@ export class PurchaseOrder {
   @ManyToOne(type => Supplier, supplier => supplier.purchaseOrders)
   supplier: Supplier;
 
-  @ManyToMany(type => Product)
-  @JoinTable({name: "purchase_order_line"})
-  products: Product[];
+  @OneToMany(type => PurchaseOrderLine, poLine => poLine.po)
+  poLines: PurchaseOrderLine[]
+
 }
