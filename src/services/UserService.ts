@@ -1,6 +1,6 @@
 import {ipcPayload} from "@/interfaces/interfaces";
 import Event = Electron.Event;
-import {User} from "../repository/entities/User.scheme";
+import {User} from "../repository/entities/User";
 const bcrypt = require('bcryptjs');
 
 export const UserServiceCb: any = async (dbConnection: any, element: ipcPayload, event: Event) => {

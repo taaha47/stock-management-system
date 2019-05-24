@@ -1,9 +1,4 @@
-import {User} from "./repository/entities/User.scheme";
-import {Product} from "./repository/entities/Product.scheme";
-import {Category} from "./repository/entities/Category.scheme";
-import {Stock} from "./repository/entities/Stock.scheme";
-import {Supplier} from "./repository/entities/Supplier.scheme";
-import {PurchaseOrder} from "./repository/entities/PurchaseOrder.scheme";
+import {User, Category, Supplier, Product, Stock, PurchaseOrder} from "./repository/entities";
 import {createConnection, Connection} from "typeorm";
 import "reflect-metadata";
 
@@ -17,7 +12,6 @@ export default class DatabaseConnection {
             try {
                 DatabaseConnection.instance = await createConnection({
                     type: "sqlite",
-                    synchronize: true,
                     logger: "simple-console",
                     database: "./src/assets/data/database.sqlite",
                     entities: [User, Category, Supplier, Product, Stock, PurchaseOrder]

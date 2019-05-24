@@ -1,6 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable} from 'typeorm';
-import {Supplier} from "./Supplier.scheme";
-import {Product} from "./Product.scheme";
+import {Supplier, Product} from ".";
 
 @Entity({name: "purchase_order"})
 export class PurchaseOrder {
@@ -15,7 +14,7 @@ export class PurchaseOrder {
   po_date: string;
 
   @ManyToOne(type => Supplier, supplier => supplier.purchaseOrders)
-  supplier: number;
+  supplier: Supplier;
 
   @ManyToMany(type => Product)
   @JoinTable({name: "purchase_order_line"})

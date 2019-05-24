@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
-import {PurchaseOrder} from "./PurchaseOrder.scheme";
+import {PurchaseOrder} from ".";
 
 @Entity({name: "supplier"})
 export class Supplier {
