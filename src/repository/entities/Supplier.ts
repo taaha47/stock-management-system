@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
 import {PurchaseOrder} from ".";
 
 @Entity({name: "supplier"})
@@ -9,6 +9,9 @@ export class Supplier {
 
   @Column()
   supplier_company_name: string;
+
+  @CreateDateColumn({type: "date"})
+  createdAt: Date;
 
   @Column()
   supplier_tel: string;
