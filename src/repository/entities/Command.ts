@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn} from 'typeorm';
 import {Client, CommandLine} from ".";
 
 @Entity({name: "command"})
@@ -10,8 +10,11 @@ export class Command {
     @Column()
     po_label: string;
 
-    @Column()
-    po_date: Date;
+    @CreateDateColumn({type: "date"})
+    createdAt: Date;
+
+    @UpdateDateColumn({type: "date"})
+    updatedAt: Date;
 
     @ManyToOne(type => Client, supplier => supplier.commands)
     client: Client;

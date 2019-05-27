@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn} from 'typeorm';
 import {Supplier, Product} from ".";
 import { PurchaseOrderLine } from ".";
 
@@ -11,8 +11,11 @@ export class PurchaseOrder {
   @Column()
   po_label: string;
 
-  @Column()
-  po_date: string;
+  @CreateDateColumn({type: "date"})
+  createdAt: Date;
+
+  @UpdateDateColumn({type: "date"})
+  updatedAt: Date;
 
   @ManyToOne(type => Supplier, supplier => supplier.purchaseOrders)
   supplier: Supplier;
