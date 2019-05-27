@@ -16,6 +16,7 @@ export default class DatabaseConnection {
                     type: "sqlite",
                     logger: "simple-console",
                     database: "./src/assets/data/database.sqlite",
+                    synchronize: true,
                     entities: [
                         User, Category, Supplier, Product,
                         Stock, PurchaseOrder, PurchaseOrderLine,

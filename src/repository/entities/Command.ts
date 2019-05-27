@@ -1,4 +1,13 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn} from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    OneToMany,
+    CreateDateColumn,
+    UpdateDateColumn,
+    JoinColumn
+} from 'typeorm';
 import {Client, CommandLine} from ".";
 
 @Entity({name: "command"})
@@ -17,6 +26,7 @@ export class Command {
     updatedAt: Date;
 
     @ManyToOne(type => Client, supplier => supplier.commands)
+    @JoinColumn({name: "client_id"})
     client: Client;
 
     @OneToMany(type => CommandLine, cmdLine => cmdLine.cmd)

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, OneToMany, JoinColumn } from 'typeorm';
 import {Category, PurchaseOrderLine, CommandLine} from ".";
 
 @Entity({name: "product"})
@@ -17,6 +17,7 @@ export class Product {
     prd_description: string;
 
     @ManyToOne(type => Category, category => category.products)
+    @JoinColumn({name: "category_id"})
     category: Category;
 
     @OneToMany(type => PurchaseOrderLine, poLine => poLine.prd)
