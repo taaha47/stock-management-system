@@ -38,7 +38,7 @@
   }
 
   @Component
-  export default class Stock extends Vue{
+  export default class Indicators extends Vue{
     @Prop(String) readonly title: string;
     @Prop(Object) readonly valA: indicatorPropType;
     @Prop(Object) readonly valB: indicatorPropType;
