@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5">
+  <div>
     <p class="heading">{{title}}</p>
     <div class="indicators-container">
       <div class="indicator">
