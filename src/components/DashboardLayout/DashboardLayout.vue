@@ -32,6 +32,6 @@
   }
 
   .content-container {
-    padding 80px 30px;
+    padding 20px 30px;
   }
 </style>
