@@ -2,8 +2,8 @@ import Vue from 'vue';
 import Router, {Route} from 'vue-router';
 import demo from "./components/demo/demo.vue"
 import Login from "./components/Login/Login.vue";
-import Home from "./views/Home.vue";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout.vue";
+import Dashboard from "./components/Dashboard/Dashboard.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -30,7 +30,7 @@ let router = new Router({
         {
           path: 'dashboard',
           name: 'dashboard',
-          component: Home
+          component: Dashboard
         },
         {
           path: 'about',

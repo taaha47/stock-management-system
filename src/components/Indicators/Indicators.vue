@@ -3,8 +3,8 @@
     <p class="heading">{{title}}</p>
     <div class="indicators-container">
       <div class="indicator">
-        <p class="title">{{valA.indicator}}</p>
-        <p class="val">{{valA.value}}</p>
+        <div class="indicator-title mb-2">{{valA.indicator}}</div>
+        <div class="indicator-val">{{valA.value}}</div>
       </div>
       <v-spacer></v-spacer>
       <v-divider
@@ -12,8 +12,8 @@
         vertical
       ></v-divider>
       <div class="indicator">
-        <p class="title">{{valB.indicator}}</p>
-        <p class="val">{{valB.value}}</p>
+        <div class="indicator-title mb-2">{{valB.indicator}}</div>
+        <div class="indicator-val">{{valB.value}}</div>
       </div>
       <v-spacer></v-spacer>
       <v-divider
@@ -21,10 +21,9 @@
         vertical
       ></v-divider>
       <div class="indicator">
-        <p class="title">{{valC.indicator}}</p>
-        <p class="val">{{valC.value}}</p>
+        <div class="indicator-title mb-2">{{valC.indicator}}</div>
+        <div class="indicator-val">{{valC.value}}</div>
       </div>
-      <v-spacer></v-spacer>
     </div>
   </div>
 </template>
@@ -50,9 +49,9 @@
 .heading
   text-align left;
   color darkslategrey;
-  font-size 20px;
+  font-size 30px;
 .indicators-container
-  padding 20px 15px;
+  padding 15px 15px;
   display flex;
   justify-content baseline;
   flex-direction row;
@@ -61,14 +60,12 @@
   border-radius 3px;
   .indicator
     text-align left;
-    width 180px;
-    .title
+    font-family "Lato Light";
+    .indicator-title
       color: darkslategrey;
       font-weight lighter
       font-size 20px;
-      font-family "Lato Light";
-    .val
+    .indicator-val
       font-size: 40px;
       color: darkslategrey;
-      font-family "Lato Light";
 </style>
