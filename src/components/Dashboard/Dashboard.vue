@@ -25,7 +25,9 @@
       <UserTypeCard userType="clients" count=21 />
     </v-layout>
 
+
     <v-flex lg12 md12>
+      <Section sectionTitle="Articles en stock"/>
       <CustomizedDatatable
         :headers="headers"
         :data = "data"
@@ -40,9 +42,10 @@
     import UserTypeCard from "../UserTypeCard/UserTypeCard.vue";
     import {mockedKPIs, mockedDataTable} from "../../helpers/properties";
     import CustomizedDatatable from "../CustomizedDatatable/CustomizedDatatable.vue";
+    import Section from "../Section/Section.vue";
 
     @Component({
-        components: { UserTypeCard, Indicators, CustomizedDatatable }
+        components: { UserTypeCard, Indicators, CustomizedDatatable, Section }
     })
     export default class Dashboard extends Vue {
       vals: any = mockedKPIs;
