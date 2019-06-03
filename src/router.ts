@@ -4,6 +4,7 @@ import demo from "./components/demo/demo.vue"
 import Login from "./components/Login/Login.vue";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout.vue";
 import Dashboard from "./components/Dashboard/Dashboard.vue";
+import AddSupplier from "./components/Suppliers/AddSupplier/AddSupplier.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -37,6 +38,11 @@ let router = new Router({
           name: 'about',
           component: demo
         },
+        {
+          path: 'add-supplier',
+          name: 'add-supplier',
+          component: AddSupplier
+        }
       ]
     },
     {

@@ -2,17 +2,17 @@ export const menu: any[] = [
     { title: 'Acceuil', icon: 'dashboard', path: "/dashboard" },
     { title: 'Articles', icon: 'local_activity', path: "", items: [
             { title: "liste des articles", path: "/about" },
-            { title: "ajouter article" }
+            { title: "ajouter article", path: "/about" }
         ]
     },
     { title: "Fournisseurs", icon: "local_activity", path: "", items: [
-            { title: "les des fournisseurs", path: "/suppliers-list"},
-            { title: "ajouter un fournisseur", path: "/suppliers-add"}
+            { title: "les des fournisseurs", path: "/about"},
+            { title: "ajouter un fournisseur", path: "/add-supplier"}
         ]
     },
     { title: "Clients", icon: "local_activity", path: "", items: [
-            { title: "les des clients", path: "/clients-list"},
-            { title: "ajouter un client", path: "/clients-add"}
+            { title: "les des clients", path: "/about"},
+            { title: "ajouter un client", path: "/about"}
         ]
     },
 ];
