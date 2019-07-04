@@ -6,6 +6,7 @@ import {ipcMain} from "electron";
 import DatabaseConnection from "./DatabaseConnection";
 import {ipcPayload} from "./interfaces/interfaces";
 import { UserServiceCb } from "./services/UserService";
+import { CategoryServiceCb } from "./services/CategoryService";
 
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -89,5 +90,9 @@ if (isDevelopment) {
 
 ipcMain.on("user-service", async (event: any, payload: ipcPayload) =>
   UserServiceCb(DatabaseConnection, payload, event)
+);
+
+ipcMain.on("category-service", async (event: any, payload: ipcPayload) =>
+  CategoryServiceCb(DatabaseConnection, payload, event)
 );
 

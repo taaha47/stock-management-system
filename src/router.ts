@@ -3,7 +3,8 @@ import Router, {Route} from 'vue-router';
 import demo from "./components/demo/demo.vue"
 import Login from "./components/Login/Login.vue";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout.vue";
-import Dashboard from "./components/Dashboard/Dashboard.vue";
+import Dashboard from "./components/DashboardContainer/Dashboard.vue";
+import CategoriesListContainer from "./components/CategoriesListContainer/CategoriesListContainer.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -37,6 +38,11 @@ let router = new Router({
           name: 'about',
           component: demo
         },
+        {
+          path: "categories-list",
+          name: "categories-list",
+          component: CategoriesListContainer
+        }
       ]
     },
     {

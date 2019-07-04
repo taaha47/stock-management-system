@@ -5,6 +5,11 @@ export const menu: any[] = [
             { title: "ajouter article", path: "/about" }
         ]
     },
+    { title: 'Categories', icon: 'local_activity', path: "", items: [
+          { title: "liste des categories", path: "/categories-list" },
+          { title: "ajouter une categorie", path: "/about" }
+        ]
+    },
     { title: "Fournisseurs", icon: "local_activity", path: "", items: [
             { title: "les des fournisseurs", path: "/about"},
             { title: "ajouter un fournisseur", path: "/add-supplier"}
@@ -33,6 +38,11 @@ export const mockedKPIs: any = {
 };
 
 export const mockedDataTable: any = {
+    categories_header: [
+      { text: 'Code', value: 'category_code', sortable: false },
+      { text: "nom de la categories", value: 'category_name' },
+      { text: "description", value: 'category_description' },
+    ],
     headers: [
         { text: 'Code', value: 'name', sortable: false },
         { text: "nom d'article", value: 'calories' },
