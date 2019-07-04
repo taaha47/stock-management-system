@@ -24,6 +24,22 @@
         >
           {{props.item[header.value]}}
         </td>
+        <td
+          v-if="deleteElement"
+          class="text-xs-right">
+          <v-btn
+            icon
+            @click="() => {deleteElement(props.item.code)}"
+          >
+            <v-icon color="grey">delete</v-icon>
+          </v-btn>
+          <v-btn
+            icon
+            @click="() => {editElement(props.item.code)}"
+          >
+            <v-icon color="grey">edit</v-icon>
+          </v-btn>
+        </td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -42,5 +58,7 @@
       @Prop({type: String, default: ""}) readonly search: string;
       @Prop() readonly headers: any;
       @Prop() readonly data: any;
+      @Prop() readonly deleteElement: Function;
+      @Prop() readonly editElement: Function;
     }
 </script>

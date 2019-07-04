@@ -49,8 +49,7 @@ export const mockedDataTable: any = {
         { text: "fournisseur", value: 'fat' },
         { text: "categorie", value: 'carbs' },
         { text: "quantite en stock", value: 'protein' },
-        { text: 'details', value: 'iron' },
-        { text: "actions", align: 'right'}
+        { text: 'details', value: 'iron' }
     ],
     desserts: [
         {
