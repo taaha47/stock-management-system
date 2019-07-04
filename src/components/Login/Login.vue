@@ -69,7 +69,7 @@
     loading: boolean = false;
 
     handleSubmit(e: Event) {
-      this.loading = true;
+      //this.loading = true;
       this.$store.dispatch("authenticate", this.password);
     }
   }

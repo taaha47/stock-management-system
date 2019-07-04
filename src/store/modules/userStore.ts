@@ -45,6 +45,7 @@ const actions = {
             router.push("/dashboard");
         } else {
             router.push("/login");
+            alert("Erreur de connexion");
         }
     },
     logout({commit, state}: any) {
