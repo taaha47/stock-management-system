@@ -26,14 +26,38 @@
         </td>
         <td
           v-if="deleteElement || editElement"
-          class="text-xs-right">
-          <v-btn
+          class="text-xs-right"
+        >
+          <v-dialog
             v-if="deleteElement"
-            icon
-            @click="() => {deleteElement(props.item)}"
+            v-model="dialog"
+            max-width="400"
           >
-            <v-icon color="grey">delete</v-icon>
-          </v-btn>
+            <template v-slot:activator="{on}">
+              <v-btn
+                v-if="deleteElement"
+                v-on="on"
+                icon
+              >
+                <v-icon color="grey">delete</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline">Confirmer la suppression</v-card-title>
+              <v-card-text>Etes-vous sur de vouloir supprimer cet element ?</v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="green darken-1"
+                  flat
+                  @click="() => {deleteElement(props.item); dialog=false;}"
+                >
+                  Continuer
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
           <v-btn
             v-if="editElement"
             icon
