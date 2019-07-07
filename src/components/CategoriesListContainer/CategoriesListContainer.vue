@@ -3,10 +3,12 @@
     <v-flex lg12 md12>
       <Section sectionTitle="Liste des Categories"/>
       <CustomizedDatatable
-        :deleteElement="deleteElement"
         :headers="headers"
-        :data = "categoriesList"
+        :deleteElement="deleteElement"
         :ConfirmDeletePopup="$options.components.ConfirmDeleteCategoryPopup"
+        :editElement="editElement"
+        :EditElementFormPopup="$options.components.EditCategoryFormPopup"
+        :data = "categoriesList"
       >
       </CustomizedDatatable>
     </v-flex>
@@ -22,10 +24,11 @@
   import Section from "../Section/Section.vue";
   import store from "../../store";
   import ConfirmDeleteCategoryPopup from "./ConfirmDeleteCategoryPopup.vue";
+  import EditCategoryFormPopup from "./EditCategoryFormPopup.vue";
 
 
   @Component({
-    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup },
+    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup, EditCategoryFormPopup },
     computed: {
       categoriesList: function() {
         return store.getters.categories;
@@ -40,6 +43,10 @@
     deleteElement: Function = (id: any) => {
       this.$store.dispatch("deleteCategory", id.category_code);
     };
+
+    editElement: Function = (id: any) => {
+      console.log(id.category_code);
+    }
 
     created() {
       this.$store.dispatch("getCategories");

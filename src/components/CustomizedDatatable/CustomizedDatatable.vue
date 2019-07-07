@@ -34,13 +34,12 @@
             :deleteElement="deleteElement"
             :element="props.item"
           ></component>
-          <v-btn
+          <component
+            :is="EditElementFormPopup"
             v-if="editElement"
-            icon
-            @click="() => {editElement(props.item)}"
-          >
-            <v-icon color="grey">edit</v-icon>
-          </v-btn>
+            :editElement="editElement"
+            :element="props.item"
+          ></component>
         </td>
       </template>
       <template v-slot:no-results>
@@ -61,7 +60,8 @@
       @Prop() readonly headers: any;
       @Prop() readonly data: any;
       @Prop() readonly deleteElement: Function;
-      @Prop() readonly editElement: Function;
       @Prop() readonly ConfirmDeletePopup: any;
+      @Prop() readonly editElement: Function;
+      @Prop() readonly EditElementFormPopup: any;
     }
 </script>
