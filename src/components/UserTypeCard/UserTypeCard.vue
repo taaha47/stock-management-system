@@ -18,7 +18,7 @@
   @Component
   export default class UserTypeCard extends Vue{
     @Prop(String) readonly userType: string;
-    @Prop(Number) readonly count: number;
+    @Prop(String) readonly count: string;
   }
 </script>
 
