@@ -6,23 +6,26 @@
         :deleteElement="deleteElement"
         :headers="headers"
         :data = "categoriesList"
-      />
+        :ConfirmDeletePopup="$options.components.ConfirmDeleteCategoryPopup"
+      >
+      </CustomizedDatatable>
     </v-flex>
   </div>
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+  import { Component, Vue } from 'vue-property-decorator';
   import Indicators from "../Indicators/Indicators.vue";
   import UserTypeCard from "../UserTypeCard/UserTypeCard.vue";
   import {mockedKPIs, mockedDataTable} from "../../helpers/properties";
   import CustomizedDatatable from "../CustomizedDatatable/CustomizedDatatable.vue";
   import Section from "../Section/Section.vue";
   import store from "../../store";
+  import ConfirmDeleteCategoryPopup from "./ConfirmDeleteCategoryPopup.vue";
 
 
   @Component({
-    components: { UserTypeCard, Indicators, CustomizedDatatable, Section },
+    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup },
     computed: {
       categoriesList: function() {
         return store.getters.categories;

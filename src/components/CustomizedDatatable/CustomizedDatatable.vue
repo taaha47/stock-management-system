@@ -28,36 +28,12 @@
           v-if="deleteElement || editElement"
           class="text-xs-right"
         >
-          <v-dialog
+          <component
+            :is="ConfirmDeletePopup"
             v-if="deleteElement"
-            v-model="dialog"
-            max-width="400"
-          >
-            <template v-slot:activator="{on}">
-              <v-btn
-                v-if="deleteElement"
-                v-on="on"
-                icon
-              >
-                <v-icon color="grey">delete</v-icon>
-              </v-btn>
-            </template>
-            <v-card>
-              <v-card-title class="headline">Confirmer la suppression</v-card-title>
-              <v-card-text>Etes-vous sur de vouloir supprimer cet element ?</v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="green darken-1"
-                  flat
-                  @click="() => {deleteElement(props.item); dialog=false;}"
-                >
-                  Continuer
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-
+            :deleteElement="deleteElement"
+            :element="props.item"
+          ></component>
           <v-btn
             v-if="editElement"
             icon
@@ -86,5 +62,6 @@
       @Prop() readonly data: any;
       @Prop() readonly deleteElement: Function;
       @Prop() readonly editElement: Function;
+      @Prop() readonly ConfirmDeletePopup: any;
     }
 </script>
