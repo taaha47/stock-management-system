@@ -23,6 +23,13 @@
         >
           Continuer
         </v-btn>
+        <v-btn
+          color="red darken-1"
+          flat
+          @click="dialog=false"
+        >
+          Annuler
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
