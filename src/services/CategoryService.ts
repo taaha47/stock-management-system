@@ -17,6 +17,13 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
         event.returnValue = "error";
       }
       break;
+    case "delete-category":
+      try {
+        const deleted = await categoryRepo.delete({"category_code": payload.category_code});
+        event.returnValue = "success";
+      } catch (e) {
+        event.returnValue = "error";
+      }
     default:
       event.returnValue = "error";
   }

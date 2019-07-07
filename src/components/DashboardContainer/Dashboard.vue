@@ -31,6 +31,7 @@
       <CustomizedDatatable
         :headers="headers"
         :data = "data"
+        :deleteElement="deleteElement"
       />
     </v-flex>
   </div>
@@ -51,6 +52,12 @@
       vals: any = mockedKPIs;
       headers: any = mockedDataTable.headers;
       data: any = mockedDataTable.desserts;
+
+      deleteElement: Function = (id: any) => {
+        alert(id.code);
+      }
+
+
     }
 </script>
 

@@ -2,7 +2,7 @@ import {ipcRenderer} from "electron";
 
 type categoriesState = {
   categories: any[]
-}
+};
 
 
 const state: categoriesState = {
@@ -30,6 +30,20 @@ const actions = {
       commit("setCategories", allCategories);
     } else {
       alert("Impossible de lire les categories de la base de donnees")
+    }
+  },
+
+  deleteCategory({commit, dispatch}: any, codeCategory: string) {
+    const deleted: string = ipcRenderer.sendSync("category-service", {
+      action: "delete-category",
+      payload: {
+        category_code: codeCategory
+      }
+    });
+    if (deleted !== "error") {
+      dispatch("getCategories");
+    } else {
+      alert(`impossible de supprimer la categorie avec le code ${codeCategory}`)
     }
   }
 };

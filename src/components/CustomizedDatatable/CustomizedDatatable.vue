@@ -25,17 +25,19 @@
           {{props.item[header.value]}}
         </td>
         <td
-          v-if="deleteElement"
+          v-if="deleteElement || editElement"
           class="text-xs-right">
           <v-btn
+            v-if="deleteElement"
             icon
-            @click="() => {deleteElement(props.item.code)}"
+            @click="() => {deleteElement(props.item)}"
           >
             <v-icon color="grey">delete</v-icon>
           </v-btn>
           <v-btn
+            v-if="editElement"
             icon
-            @click="() => {editElement(props.item.code)}"
+            @click="() => {editElement(props.item)}"
           >
             <v-icon color="grey">edit</v-icon>
           </v-btn>

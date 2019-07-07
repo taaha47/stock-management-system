@@ -3,8 +3,9 @@
     <v-flex lg12 md12>
       <Section sectionTitle="Liste des Categories"/>
       <CustomizedDatatable
+        :deleteElement="deleteElement"
         :headers="headers"
-        :data = "data"
+        :data = "categoriesList"
       />
     </v-flex>
   </div>
@@ -19,17 +20,26 @@
   import Section from "../Section/Section.vue";
   import store from "../../store";
 
+
   @Component({
-    components: { UserTypeCard, Indicators, CustomizedDatatable, Section }
+    components: { UserTypeCard, Indicators, CustomizedDatatable, Section },
+    computed: {
+      categoriesList: function() {
+        return store.getters.categories;
+      }
+    }
   })
   export default class CategoriesListContainer extends Vue {
     vals: any = mockedKPIs;
     headers: any = mockedDataTable.categories_header;
-    data: any = store.getters.categories;
+    categoriesList!: any;
+
+    deleteElement: Function = (id: any) => {
+      this.$store.dispatch("deleteCategory", id.category_code);
+    };
 
     created() {
       this.$store.dispatch("getCategories");
-      this.data = store.getters.categories;
     }
   }
 </script>
