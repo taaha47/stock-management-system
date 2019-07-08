@@ -7,7 +7,7 @@ export class Category {
     @PrimaryGeneratedColumn()
     category_id: number;
 
-    @Column()
+    @Column({"unique": true})
     category_code: string;
 
     @Column()
