@@ -14,7 +14,7 @@
       </v-card-title>
       <v-form
         v-model="valid"
-        @submit.prevent="handleSubmit"
+        @submit.prevent="() => {handleSubmit(element.category_code)}"
       >
         <v-card-text>
           <v-container grid-list-md>
@@ -58,6 +58,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
+            :disabled="!valid"
             color="green darken-1"
             flat
             type="submit"
@@ -89,13 +90,15 @@
     categoryDescription: string = this.element.category_description;
     dialog: boolean = false;
     rules: any[] = [(v: boolean) => !!v || "Ce champ est obligatoire"];
+    valid: boolean = false;
 
-    handleSubmit() {
-      this.editElement({
+    handleSubmit(categoryCode: string) {
+      this.editElement(categoryCode, {
         "category_code": this.categoryCode,
         "category_name": this.categoryName,
         "category_description": this.categoryDescription
       });
+      this.dialog = false;
     }
   }
 </script>

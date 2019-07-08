@@ -45,6 +45,21 @@ const actions = {
     } else {
       alert(`impossible de supprimer la categorie avec le code ${codeCategory}`)
     }
+  },
+
+  editCategory({commit, dispatch}: any, {categoryToUpdateCode, category}: any) {
+    const editedCategory: string = ipcRenderer.sendSync("category-service", {
+      action: "edit-category",
+      payload: {
+        categoryToUpdateCode,
+        category
+      }
+    });
+    if(editedCategory === "success") {
+      dispatch("getCategories");
+    } else {
+      alert(`impossible de modifier la categorie ${category.category_code}`)
+    }
   }
 };
 

@@ -44,9 +44,9 @@
       this.$store.dispatch("deleteCategory", id.category_code);
     };
 
-    editElement: Function = (id: any) => {
-      console.log(id.category_code);
-    }
+    editElement: Function = (categoryToUpdateCode: string, category: any) => {
+      this.$store.dispatch("editCategory", {categoryToUpdateCode, category});
+    };
 
     created() {
       this.$store.dispatch("getCategories");
