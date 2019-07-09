@@ -1,7 +1,7 @@
 <template>
   <div class="user-type-card">
     <img
-      :src="require('../../assets/user.png')"
+      v-bind:src="require('../../assets/' + this.computePath(iconType))"
       height="65"
       width="65"
     />
@@ -17,8 +17,20 @@
 
   @Component
   export default class UserTypeCard extends Vue{
-    @Prop(String) readonly userType: string;
+    @Prop(String) readonly userType?: string;
+    @Prop({default: "PERSON"}) readonly iconType: ("PERSON" | "CATEGORY");
     @Prop(String) readonly count: string;
+
+    computePath = (iconType) => {
+      switch (iconType) {
+        case "CATEGORY":
+          return "2-squares.svg";
+        case "PERSON":
+        default:
+          return "user.png"
+      }
+    };
+
   }
 </script>
 
