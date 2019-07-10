@@ -2,6 +2,7 @@
   <v-layout fill-height class="layout-container">
     <NavigationBar />
     <v-content>
+      <HeaderToolBar />
       <v-container class="content-container">
         <router-view/>
       </v-container>
@@ -12,13 +13,15 @@
 
 <script lang="ts">
   import NavigationBar from "../NavigationBar/NavigationBar.vue";
+  import HeaderToolBar from "../NavigationBar/HeaderToolBar.vue";
   import LogoutButton from "../LogoutButton/LogoutButton.vue";
   import { Component, Vue } from 'vue-property-decorator';
 
     @Component({
         components: {
             NavigationBar,
-            LogoutButton
+            LogoutButton,
+            HeaderToolBar
         }
     })
     export default class DashboardLayout extends Vue{}
