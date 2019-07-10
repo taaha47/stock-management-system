@@ -6,8 +6,7 @@ export const menu: any[] = [
         ]
     },
     { title: 'Categories', icon: 'local_activity', path: "", items: [
-          { title: "liste des categories", path: "/categories-list" },
-          { title: "ajouter une categorie", path: "/about" }
+          { title: "liste des categories", path: "/categories-list" }
         ]
     },
     { title: "Fournisseurs", icon: "local_activity", path: "", items: [
