@@ -33,6 +33,14 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
         event.returnValue = "error";
       }
       break;
+    case "add-category":
+      try {
+        await categoryRepo.save(payload.category);
+        event.returnValue = "success";
+      } catch (e) {
+        event.returnValue = "error";
+      }
+    break;
     default:
       event.returnValue = "error";
   }

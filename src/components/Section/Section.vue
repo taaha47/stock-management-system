@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <div class="section text-lg-left">
-      <span>
+      <span :class="[{'section__hover': clickable}]">
         {{sectionTitle}}
       </span>
     </div>
@@ -14,6 +14,7 @@
   @Component
   export default class Section extends Vue{
     @Prop({type: String, default: ""}) readonly sectionTitle: string;
+    @Prop() readonly clickable: boolean;
   }
 </script>
 
@@ -25,4 +26,8 @@
   font-weight lighter
   font-size 25px;
   font-family "Lato Light";
+  &__hover
+    &:hover
+      cursor pointer;
+      color: black;
 </style>

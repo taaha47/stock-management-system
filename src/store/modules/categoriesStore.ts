@@ -11,6 +11,7 @@ const state: categoriesState = {
 
 const getters = {
   categories: (state: categoriesState) => state.categories,
+  categoriesCount: (state: categoriesState) => state.categories.length
 };
 
 const mutations = {
@@ -59,6 +60,21 @@ const actions = {
       dispatch("getCategories");
     } else {
       alert(`impossible de modifier la categorie ${category.category_code}`)
+    }
+  },
+
+  addCategory({commit, dispatch}: any, category: any) {
+    const addedCategory: string = ipcRenderer.sendSync("category-service", {
+      action: "add-category",
+      payload: {
+        category
+      }
+    });
+    if (addedCategory === "success") {
+      dispatch("getCategories");
+      alert(`la catégorie ${category.category_code} a été ajoutée avec succès`);
+    } else {
+      alert("impossible d'ajouter la catégorie");
     }
   }
 };

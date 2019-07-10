@@ -1,5 +1,12 @@
 <template>
   <div>
+    <v-layout row wrap mb-5>
+      <UserTypeCard
+        userType="Categories"
+        :count="categoriesCount"
+        iconType="CATEGORY"
+      />
+    </v-layout>
     <v-flex lg12 md12>
       <Section sectionTitle="Liste des Categories"/>
       <CustomizedDatatable
@@ -9,8 +16,12 @@
         :editElement="editElement"
         :EditElementFormPopup="$options.components.EditCategoryFormPopup"
         :data = "categoriesList"
-      >
-      </CustomizedDatatable>
+      ></CustomizedDatatable>
+    </v-flex>
+    <v-flex lg12 md12>
+      <AddCategoryForm
+        :addElement="addElement"
+      />
     </v-flex>
   </div>
 </template>
@@ -25,13 +36,17 @@
   import store from "../../store";
   import ConfirmDeleteCategoryPopup from "./ConfirmDeleteCategoryPopup.vue";
   import EditCategoryFormPopup from "./EditCategoryFormPopup.vue";
+  import AddCategoryForm from "./AddCategoryForm.vue";
 
 
   @Component({
-    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup, EditCategoryFormPopup },
+    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup, EditCategoryFormPopup, AddCategoryForm },
     computed: {
       categoriesList: function() {
         return store.getters.categories;
+      },
+      categoriesCount: function() {
+        return store.getters.categoriesCount;
       }
     }
   })
@@ -39,6 +54,8 @@
     vals: any = mockedKPIs;
     headers: any = mockedDataTable.categories_header;
     categoriesList!: any;
+    categoriesCount!: number;
+    showForm: boolean = false;
 
     deleteElement: Function = (id: any) => {
       this.$store.dispatch("deleteCategory", id.category_code);
@@ -46,6 +63,10 @@
 
     editElement: Function = (categoryToUpdateCode: string, category: any) => {
       this.$store.dispatch("editCategory", {categoryToUpdateCode, category});
+    };
+
+    addElement: Function = (category: any) => {
+      this.$store.dispatch("addCategory", category);
     };
 
     created() {

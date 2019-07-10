@@ -21,7 +21,7 @@
     @Prop({default: "PERSON"}) readonly iconType: ("PERSON" | "CATEGORY");
     @Prop(String) readonly count: string;
 
-    computePath = (iconType) => {
+    computePath: Function = (iconType: string) => {
       switch (iconType) {
         case "CATEGORY":
           return "2-squares.svg";
