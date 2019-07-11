@@ -8,7 +8,7 @@ class stock1558565437534 implements MigrationInterface {
         stk_code varchar(8) default 'none',
         stk_product_id INTEGER,
         stk_quantity int,
-        CONSTRAINT fk_stk_prd FOREIGN KEY (stk_product_id) REFERENCES product(prd_id)
+        CONSTRAINT fk_stk_prd FOREIGN KEY (stk_product_id) REFERENCES product(product_id)
         ON UPDATE CASCADE 
         ON DELETE CASCADE
       )`);

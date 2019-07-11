@@ -1,7 +1,7 @@
 export const menu: any[] = [
     { title: 'Acceuil', icon: 'dashboard', path: "/dashboard" },
     { title: 'Articles', icon: 'local_activity', path: "", items: [
-            { title: "liste des articles", path: "/about" },
+            { title: "liste des articles", path: "/products-list" },
             { title: "ajouter article", path: "/about" }
         ]
     },
@@ -41,6 +41,14 @@ export const mockedDataTable: any = {
       { text: 'Code', value: 'category_code', sortable: false },
       { text: "nom de la categories", value: 'category_name' },
       { text: "description", value: 'category_description' },
+    ],
+    products_header: [
+      { text: 'Code', value: 'product_code', sortable: false},
+      { text: "libelé de l'article", value: 'product_name'},
+      { text: 'package', value: 'product_packaging'},
+      { text: 'description', value: 'product_description', sortable: false},
+      { text: 'catégorie', value: 'category_name', sortable: false },
+      { text: 'code de la catégorie', value: 'category_code', sortable: false }
     ],
     headers: [
         { text: 'Code', value: 'name', sortable: false },

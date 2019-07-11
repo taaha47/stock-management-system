@@ -5,18 +5,21 @@ import {Category, PurchaseOrderLine, CommandLine} from ".";
 export class Product {
 
     @PrimaryGeneratedColumn()
-    prd_id: number;
+    product_id: number;
+
+    @Column({unique: true})
+    product_code: string;
 
     @Column()
-    prd_name: string;
+    product_name: string;
 
     @Column()
-    prd_packaging: string;
+    product_packaging: string;
 
     @Column()
-    prd_description: string;
+    product_description: string;
 
-    @ManyToOne(type => Category, category => category.products)
+    @ManyToOne(type => Category, category => category.products, {eager: true})
     @JoinColumn({name: "category_id"})
     category: Category;
 

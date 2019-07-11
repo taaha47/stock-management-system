@@ -2,20 +2,20 @@
   <div>
     <v-layout row wrap mb-5>
       <UserTypeCard
-        userType="Categories"
-        :count="categoriesCount"
+        userType="Articles"
+        :count="productsCount"
         iconType="CATEGORY"
       />
     </v-layout>
     <v-flex lg12 md12>
-      <Section sectionTitle="Liste des Categories"/>
+      <Section sectionTitle="Liste des Articles"/>
       <CustomizedDatatable
         :headers="headers"
         :deleteElement="deleteElement"
         :ConfirmDeletePopup="$options.components.ConfirmDeleteCategoryPopup"
         :editElement="editElement"
         :EditElementFormPopup="$options.components.EditCategoryFormPopup"
-        :data = "categoriesList"
+        :data = "productsList"
       ></CustomizedDatatable>
     </v-flex>
     <v-flex lg12 md12>
@@ -34,42 +34,42 @@
   import CustomizedDatatable from "../CustomizedDatatable/CustomizedDatatable.vue";
   import Section from "../Section/Section.vue";
   import store from "../../store";
-  import ConfirmDeleteCategoryPopup from "./ConfirmDeleteCategoryPopup.vue";
-  import EditCategoryFormPopup from "./EditCategoryFormPopup.vue";
-  import AddCategoryForm from "./AddCategoryForm.vue";
+  import ConfirmDeleteCategoryPopup from "../CategoriesListContainer/ConfirmDeleteCategoryPopup.vue";
+  import EditCategoryFormPopup from "../CategoriesListContainer/EditCategoryFormPopup.vue";
+  import AddCategoryForm from "../CategoriesListContainer/AddCategoryForm.vue";
 
 
   @Component({
     components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup, EditCategoryFormPopup, AddCategoryForm },
     computed: {
-      categoriesList: function() {
-        return store.getters.categories;
+      productsList: function() {
+        return store.getters.products;
       },
-      categoriesCount: function() {
-        return store.getters.categoriesCount;
+      productsCount: function() {
+        return store.getters.productsCount;
       }
     }
   })
-  export default class CategoriesListContainer extends Vue {
-    headers: any = mockedDataTable.categories_header;
-    categoriesList!: any;
-    categoriesCount!: number;
+  export default class ProductsListContainer extends Vue {
+    headers: any = mockedDataTable.products_header;
+    productsList!: any;
+    productsCount!: number;
     showForm: boolean = false;
 
     deleteElement: Function = (id: any) => {
-      this.$store.dispatch("deleteCategory", id.category_code);
+      this.$store.dispatch("deleteProduct", id.product_code);
     };
 
-    editElement: Function = (categoryToUpdateCode: string, category: any) => {
-      this.$store.dispatch("editCategory", {categoryToUpdateCode, category});
+    editElement: Function = (productToUpdateCode: string, product: any) => {
+      this.$store.dispatch("editProduct", {productToUpdateCode, product});
     };
 
-    addElement: Function = (category: any) => {
-      this.$store.dispatch("addCategory", category);
+    addElement: Function = (product: any) => {
+      this.$store.dispatch("addProduct", product);
     };
 
     created() {
-      this.$store.dispatch("getCategories");
+      this.$store.dispatch("getProducts");
     }
   }
 </script>

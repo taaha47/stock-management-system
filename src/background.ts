@@ -7,6 +7,7 @@ import DatabaseConnection from "./DatabaseConnection";
 import {ipcPayload} from "./interfaces/interfaces";
 import { UserServiceCb } from "./services/UserService";
 import { CategoryServiceCb } from "./services/CategoryService";
+import { ProductServiceCb } from "./services/ProductService";
 
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -94,5 +95,9 @@ ipcMain.on("user-service", async (event: any, payload: ipcPayload) =>
 
 ipcMain.on("category-service", async (event: any, payload: ipcPayload) =>
   CategoryServiceCb(DatabaseConnection, payload, event)
+);
+
+ipcMain.on("product-service", async (event: any, payload: ipcPayload) =>
+  ProductServiceCb(DatabaseConnection, payload, event)
 );
 

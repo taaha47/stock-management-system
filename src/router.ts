@@ -5,6 +5,7 @@ import Login from "./components/Login/Login.vue";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout.vue";
 import Dashboard from "./components/DashboardContainer/Dashboard.vue";
 import CategoriesListContainer from "./components/CategoriesListContainer/CategoriesListContainer.vue";
+import ProductsListContainer from "./components/ProductsListContainer/ProductsListContainer.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -42,6 +43,11 @@ let router = new Router({
           path: "categories-list",
           name: "categories-list",
           component: CategoriesListContainer
+        },
+        {
+          path: "products-list",
+          name: "products-list",
+          component: ProductsListContainer
         }
       ]
     },
