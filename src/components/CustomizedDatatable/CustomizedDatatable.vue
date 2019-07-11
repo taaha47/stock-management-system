@@ -33,6 +33,7 @@
             v-if="deleteElement"
             :deleteElement="deleteElement"
             :element="props.item"
+            :deleteConfirmationMessage="deleteConfirmationMessage"
           ></component>
           <component
             :is="EditElementFormPopup"
@@ -63,5 +64,6 @@
       @Prop() readonly ConfirmDeletePopup: any;
       @Prop() readonly editElement: Function;
       @Prop() readonly EditElementFormPopup: any;
+      @Prop() readonly deleteConfirmationMessage: string;
     }
 </script>

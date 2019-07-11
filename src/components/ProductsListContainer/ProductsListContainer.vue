@@ -12,9 +12,10 @@
       <CustomizedDatatable
         :headers="headers"
         :deleteElement="deleteElement"
-        :ConfirmDeletePopup="$options.components.ConfirmDeleteCategoryPopup"
+        :ConfirmDeletePopup="$options.components.ConfirmDeleteElementPopup"
+        deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cet article ?"
         :editElement="editElement"
-        :EditElementFormPopup="$options.components.EditCategoryFormPopup"
+        :EditElementFormPopup="$options.components.EditProductFormPopup"
         :data = "productsList"
       ></CustomizedDatatable>
     </v-flex>
@@ -34,13 +35,13 @@
   import CustomizedDatatable from "../CustomizedDatatable/CustomizedDatatable.vue";
   import Section from "../Section/Section.vue";
   import store from "../../store";
-  import ConfirmDeleteCategoryPopup from "../CategoriesListContainer/ConfirmDeleteCategoryPopup.vue";
-  import EditCategoryFormPopup from "../CategoriesListContainer/EditCategoryFormPopup.vue";
+  import ConfirmDeleteElementPopup from "../ConfirmDeleteElementPopup/ConfirmDeleteElementPopup.vue";
+  import EditProductFormPopup from "./EditProductFormPopup.vue";
   import AddCategoryForm from "../CategoriesListContainer/AddCategoryForm.vue";
 
 
   @Component({
-    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup, EditCategoryFormPopup, AddCategoryForm },
+    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteElementPopup, EditProductFormPopup, AddCategoryForm },
     computed: {
       productsList: function() {
         return store.getters.products;

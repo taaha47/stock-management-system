@@ -10,7 +10,7 @@ const state: productsState = {
 };
 
 const getters = {
-  products: (state: productsState) => state.products.map(prd => ({...prd, "category_code": prd.category.category_code, "category_name": prd.category.category_name})),
+  products: (state: productsState) => state.products.map(prd => ({...prd, ...prd.category})),
   productsCount: (state: productsState) => state.products.length
 };
 
@@ -59,7 +59,7 @@ const actions = {
     if(editedProduct === "success") {
       dispatch("getProducts");
     } else {
-      alert(`impossible de modifier l'article ${product.prd_code}`)
+      alert(`impossible de modifier l'article ${product.product_code}`)
     }
   },
 

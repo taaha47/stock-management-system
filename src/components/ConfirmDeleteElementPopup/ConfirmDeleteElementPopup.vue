@@ -13,7 +13,7 @@
     </template>
     <v-card>
       <v-card-title class="headline">Confirmer la suppression</v-card-title>
-      <v-card-text>Etes-vous sur de vouloir supprimer cet element ?</v-card-text>
+      <v-card-text>{{deleteConfirmationMessage}}</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
@@ -38,9 +38,10 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
   @Component
-  export default class ConfirmDeleteCategoryPopup extends Vue{
+  export default class ConfirmDeleteElementPopup extends Vue{
     @Prop() readonly deleteElement: Function;
     @Prop() readonly element: any;
+    @Prop() readonly deleteConfirmationMessage: string;
 
     dialog: boolean = false;
   }

@@ -16,6 +16,22 @@ export const ProductServiceCb: any = async (dbConnection: any, element: ipcPaylo
         event.returnValue = "error";
       }
       break;
+    case "delete-product":
+      try {
+        await productRepo.delete({"product_code": payload.product_code});
+        event.returnValue = "success";
+      } catch (e) {
+        event.returnValue = "error";
+      }
+      break;
+    case "edit-product":
+      try {
+        await productRepo.update({"product_code": payload.productToUpdateCode}, payload.product);
+        event.returnValue = "success";
+      } catch (e) {
+        event.returnValue = "error";
+      }
+      break;
     default:
       event.returnValue = "error";
   }

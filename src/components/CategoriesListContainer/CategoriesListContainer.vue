@@ -12,10 +12,11 @@
       <CustomizedDatatable
         :headers="headers"
         :deleteElement="deleteElement"
-        :ConfirmDeletePopup="$options.components.ConfirmDeleteCategoryPopup"
+        :ConfirmDeletePopup="$options.components.ConfirmDeleteElementPopup"
         :editElement="editElement"
         :EditElementFormPopup="$options.components.EditCategoryFormPopup"
         :data = "categoriesList"
+        deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cette catégorie ?"
       ></CustomizedDatatable>
     </v-flex>
     <v-flex lg12 md12>
@@ -34,13 +35,13 @@
   import CustomizedDatatable from "../CustomizedDatatable/CustomizedDatatable.vue";
   import Section from "../Section/Section.vue";
   import store from "../../store";
-  import ConfirmDeleteCategoryPopup from "./ConfirmDeleteCategoryPopup.vue";
+  import ConfirmDeleteElementPopup from "../ConfirmDeleteElementPopup/ConfirmDeleteElementPopup.vue";
   import EditCategoryFormPopup from "./EditCategoryFormPopup.vue";
   import AddCategoryForm from "./AddCategoryForm.vue";
 
 
   @Component({
-    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteCategoryPopup, EditCategoryFormPopup, AddCategoryForm },
+    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteElementPopup, EditCategoryFormPopup, AddCategoryForm },
     computed: {
       categoriesList: function() {
         return store.getters.categories;
