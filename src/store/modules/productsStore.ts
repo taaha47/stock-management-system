@@ -41,7 +41,7 @@ const actions = {
         product_code: codeProduct
       }
     });
-    if (deleted !== "error") {
+    if (deleted === "success") {
       dispatch("getProducts");
     } else {
       alert(`impossible de supprimer l'article avec le code ${codeProduct}`)
@@ -72,7 +72,7 @@ const actions = {
     });
     if (addedProduct === "success") {
       dispatch("getProducts");
-      alert(`l'article ${product.prd_code} a été ajoutée avec succès`);
+      alert(`l'article ${product.product_code} a été ajoutée avec succès`);
     } else {
       alert("impossible d'ajouter cet article");
     }

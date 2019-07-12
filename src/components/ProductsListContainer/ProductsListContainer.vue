@@ -20,7 +20,7 @@
       ></CustomizedDatatable>
     </v-flex>
     <v-flex lg12 md12>
-      <AddCategoryForm
+      <AddProductForm
         :addElement="addElement"
       />
     </v-flex>
@@ -37,11 +37,11 @@
   import store from "../../store";
   import ConfirmDeleteElementPopup from "../ConfirmDeleteElementPopup/ConfirmDeleteElementPopup.vue";
   import EditProductFormPopup from "./EditProductFormPopup.vue";
-  import AddCategoryForm from "../CategoriesListContainer/AddCategoryForm.vue";
+  import AddProductForm from "./AddProductForm.vue";
 
 
   @Component({
-    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteElementPopup, EditProductFormPopup, AddCategoryForm },
+    components: { UserTypeCard, Indicators, CustomizedDatatable, Section, ConfirmDeleteElementPopup, EditProductFormPopup, AddProductForm },
     computed: {
       productsList: function() {
         return store.getters.products;
@@ -71,6 +71,6 @@
 
     created() {
       this.$store.dispatch("getProducts");
-    }
+    };
   }
 </script>
