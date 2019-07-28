@@ -21,8 +21,8 @@
     </v-layout>
 
     <v-layout row wrap justify-space-between mb-5>
-      <UserTypeCard userType="Fournisseurs" count=21 />
-      <UserTypeCard userType="clients" count=21 />
+      <UserTypeCard userType="Fournisseurs" :count=21 />
+      <UserTypeCard userType="clients" :count=21 />
     </v-layout>
 
 

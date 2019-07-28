@@ -22,6 +22,7 @@ happily made with
     - postinstall for windows                  : npm run postinstall-win
     - run unit tests                           : npm run test
     - linting                                  : npm run lint
+    - migration                                : npm run typeorm:cli -- migration:run
 
 ##### useful links:
     - https://nklayman.github.io/vue-cli-plugin-electron-builder/

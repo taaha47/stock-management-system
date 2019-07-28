@@ -19,7 +19,7 @@
   export default class UserTypeCard extends Vue{
     @Prop(String) readonly userType?: string;
     @Prop({default: "PERSON"}) readonly iconType: ("PERSON" | "CATEGORY");
-    @Prop(String) readonly count: string;
+    @Prop(Number) readonly count: number;
 
     computePath: Function = (iconType: string) => {
       switch (iconType) {

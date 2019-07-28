@@ -29,6 +29,7 @@
           class="text-xs-right"
         >
           <component
+            :key="generateKey()"
             :is="ConfirmDeletePopup"
             v-if="deleteElement"
             :deleteElement="deleteElement"
@@ -36,6 +37,7 @@
             :deleteConfirmationMessage="deleteConfirmationMessage"
           ></component>
           <component
+            :key="generateKey()"
             :is="EditElementFormPopup"
             v-if="editElement"
             :editElement="editElement"
@@ -54,6 +56,7 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import {generateRandomKey} from "../../helpers/functions";
 
     @Component
     export default class CustomizedDatatable extends Vue {
@@ -65,5 +68,9 @@
       @Prop() readonly editElement: Function;
       @Prop() readonly EditElementFormPopup: any;
       @Prop() readonly deleteConfirmationMessage: string;
+
+      generateKey() {
+        return generateRandomKey();
+      }
     }
 </script>
