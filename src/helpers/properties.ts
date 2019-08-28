@@ -41,6 +41,7 @@ export const mockedDataTable: any = {
       { text: 'Code', value: 'category_code', sortable: false },
       { text: "nom de la categories", value: 'category_name' },
       { text: "description", value: 'category_description' },
+      { text: "nombre de produits", value: "products_count"}
     ],
     products_header: [
       { text: 'Code', value: 'product_code', sortable: false},

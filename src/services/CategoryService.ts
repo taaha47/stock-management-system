@@ -11,7 +11,15 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
     case "get-categories":
       //const {password} = payload;
       try {
-        const allCategories = await categoryRepo.find();
+        const allCategories = await categoryRepo.createQueryBuilder( "category")
+            .select("category.category_code", "category_code")
+            .addSelect("category.category_name", "category_name")
+            .addSelect("category.category_description", "category_description")
+            .addSelect("COUNT(product.category.category_id)", "products_count")
+            .leftJoin("category.products", "product")
+            .groupBy("category.category_code")
+            .getRawMany();
+        console.log(allCategories);
         event.returnValue = allCategories;
       } catch(e) {
         event.returnValue = "error";
