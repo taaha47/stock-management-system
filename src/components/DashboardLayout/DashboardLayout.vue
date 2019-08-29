@@ -4,6 +4,10 @@
     <v-content>
       <HeaderToolBar />
       <v-container class="content-container">
+        <GlobalLoader
+          visible="true"
+          message="Merci de patienter"
+        />
         <router-view/>
       </v-container>
     </v-content>
@@ -15,13 +19,15 @@
   import NavigationBar from "../NavigationBar/NavigationBar.vue";
   import HeaderToolBar from "../NavigationBar/HeaderToolBar.vue";
   import LogoutButton from "../LogoutButton/LogoutButton.vue";
+  import GlobalLoader from "../GlobalLoader/GlobalLoader.vue";
   import { Component, Vue } from 'vue-property-decorator';
 
     @Component({
         components: {
             NavigationBar,
             LogoutButton,
-            HeaderToolBar
+            HeaderToolBar,
+            GlobalLoader
         }
     })
     export default class DashboardLayout extends Vue{}
