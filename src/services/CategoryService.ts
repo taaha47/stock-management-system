@@ -1,7 +1,6 @@
 import {ipcPayload} from "@/interfaces/interfaces";
 import Event = Electron.Event;
 import {Category} from "../repository/entities/Category";
-import {ipcRenderer} from "electron";
 
 export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayload, event: Event) => {
   const dbInstance = await dbConnection.getInstance();
