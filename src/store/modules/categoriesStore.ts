@@ -21,19 +21,25 @@ const mutations = {
 };
 
 const actions = {
-  getCategories({commit, state}: any) {
-    const allCategories = ipcRenderer.sendSync("category-service", {
-      action: "get-categories",
-      payload: {
-      }
+  // get all categories
+  getCategories({commit, dispatch}: any) {
+      dispatch("pushLoader", {"issuer": "get-categories"});
+      ipcRenderer.send("category-service", {
+      action: "get-categories"
     });
-    if (allCategories && allCategories !== "error") {
-      commit("setCategories", allCategories);
-    } else {
-      alert("Impossible de lire les categories de la base de donnees")
-    }
   },
 
+  getCategoriesSuccess({commit, dispatch}: any, allCategories: any[]) {
+      dispatch("deleteLoader", {"issuer": "get-categories"});
+      commit("setCategories", allCategories);
+  },
+
+  getCategoriesError({commit, dispatch}: any, errorMessage: string) {
+      dispatch("deleteLoader", {"issuer": "get-categories"});
+      alert("erreur lors de l ajout de cet article")
+  },
+
+  // delete category
   deleteCategory({commit, dispatch}: any, codeCategory: string) {
     const deleted: string = ipcRenderer.sendSync("category-service", {
       action: "delete-category",
@@ -63,19 +69,26 @@ const actions = {
     }
   },
 
+  // add category
   addCategory({commit, dispatch}: any, category: any) {
-    const addedCategory: string = ipcRenderer.sendSync("category-service", {
+    dispatch("pushLoader", {"issuer": "add-category"});
+    ipcRenderer.send("category-service", {
       action: "add-category",
       payload: {
         category
       }
     });
-    if (addedCategory === "success") {
+  },
+
+  addCategorySuccess({commit, dispatch}: any) {
+      dispatch("deleteLoader", {"issuer": "add-category"});
       dispatch("getCategories");
-      alert(`la catégorie ${category.category_code} a été ajoutée avec succès`);
-    } else {
-      alert("impossible d'ajouter la catégorie");
-    }
+  },
+
+  addCategoryError({commit, dispatch}: any, errorMessage: string) {
+      dispatch("deleteLoader", {"issuer": "add-category"});
+      dispatch("getCategories");
+      alert("operation impossible");
   }
 };
 

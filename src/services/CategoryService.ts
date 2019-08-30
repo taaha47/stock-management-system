@@ -1,6 +1,7 @@
 import {ipcPayload} from "@/interfaces/interfaces";
 import Event = Electron.Event;
 import {Category} from "../repository/entities/Category";
+import {ipcRenderer} from "electron";
 
 export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayload, event: Event) => {
   const dbInstance = await dbConnection.getInstance();
@@ -9,20 +10,18 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
 
   switch (action) {
     case "get-categories":
-      //const {password} = payload;
       try {
         const allCategories = await categoryRepo.createQueryBuilder( "category")
-            .select("category.category_code", "category_code")
-            .addSelect("category.category_name", "category_name")
-            .addSelect("category.category_description", "category_description")
-            .addSelect("COUNT(product.category.category_id)", "products_count")
-            .leftJoin("category.products", "product")
-            .groupBy("category.category_code")
-            .getRawMany();
-        console.log(allCategories);
-        event.returnValue = allCategories;
+          .select("category.category_code", "category_code")
+          .addSelect("category.category_name", "category_name")
+          .addSelect("category.category_description", "category_description")
+          .addSelect("COUNT(product.category.category_id)", "products_count")
+          .leftJoin("category.products", "product")
+          .groupBy("category.category_code")
+          .getRawMany();
+        event.sender.send("category-service", {action, status: "success", data: allCategories});
       } catch(e) {
-        event.returnValue = "error";
+        event.sender.send("category-service", {action, status: "error", data: e.message});
       }
       break;
     case "delete-category":
@@ -44,9 +43,9 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
     case "add-category":
       try {
         await categoryRepo.save(payload.category);
-        event.returnValue = "success";
+        event.sender.send("category-service", {action, status: "success"});
       } catch (e) {
-        event.returnValue = "error";
+        event.sender.send("category-service", {action, status: "error", data: e.message});
       }
     break;
     default:

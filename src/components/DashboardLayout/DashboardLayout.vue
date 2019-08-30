@@ -5,7 +5,7 @@
       <HeaderToolBar />
       <v-container class="content-container">
         <GlobalLoader
-          visible="true"
+          :visible="loaderStatus"
           message="Merci de patienter"
         />
         <router-view/>
@@ -21,16 +21,24 @@
   import LogoutButton from "../LogoutButton/LogoutButton.vue";
   import GlobalLoader from "../GlobalLoader/GlobalLoader.vue";
   import { Component, Vue } from 'vue-property-decorator';
+  import store from "../../store";
 
-    @Component({
+  @Component({
         components: {
             NavigationBar,
             LogoutButton,
             HeaderToolBar,
             GlobalLoader
+        },
+        computed: {
+            loaderStatus: function() {
+                return store.getters.getGlobalLoader;
+            }
         }
     })
-    export default class DashboardLayout extends Vue{}
+    export default class DashboardLayout extends Vue{
+        loaderStatus!: boolean;
+    }
 </script>
 
 <style scoped lang="stylus">

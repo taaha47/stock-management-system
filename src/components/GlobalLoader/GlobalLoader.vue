@@ -2,6 +2,7 @@
   <v-dialog
     v-model="visible"
     persistent
+    hide-overlay
     width="300"
   >
     <v-card
