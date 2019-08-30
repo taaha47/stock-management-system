@@ -1,23 +1,10 @@
 <template>
-  <v-dialog
-    v-model="visible"
-    persistent
-    hide-overlay
-    width="300"
-  >
-    <v-card
-      color="#36454f"
-      dark
-    >
-      <v-card-text>
-        {{message}}
-        <v-progress-linear
-          indeterminate
-          color="green"
-        ></v-progress-linear>
-      </v-card-text>
-    </v-card>
-  </v-dialog>
+  <v-progress-linear
+    v-show="visible"
+    indeterminate
+    color="green"
+    style="top: -17px;"
+  ></v-progress-linear>
 </template>
 
 <script lang="ts">

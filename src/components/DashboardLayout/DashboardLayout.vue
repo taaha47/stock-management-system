@@ -3,11 +3,11 @@
     <NavigationBar />
     <v-content>
       <HeaderToolBar />
+      <GlobalLoader
+        :visible="loaderStatus"
+        message="Merci de patienter"
+      />
       <v-container class="content-container">
-        <GlobalLoader
-          :visible="loaderStatus"
-          message="Merci de patienter"
-        />
         <router-view/>
       </v-container>
     </v-content>
