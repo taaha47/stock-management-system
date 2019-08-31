@@ -28,12 +28,10 @@ const actions = {
       action: "get-categories"
     });
   },
-
   getCategoriesSuccess({commit, dispatch}: any, allCategories: any[]) {
       dispatch("deleteLoader", {"issuer": "get-categories"});
       commit("setCategories", allCategories);
   },
-
   getCategoriesError({commit, dispatch}: any, errorMessage: string) {
       dispatch("deleteLoader", {"issuer": "get-categories"});
       alert("erreur lors de l ajout de cet article")
@@ -41,32 +39,42 @@ const actions = {
 
   // delete category
   deleteCategory({commit, dispatch}: any, codeCategory: string) {
-    const deleted: string = ipcRenderer.sendSync("category-service", {
+    dispatch("pushLoader", {"issuer": "delete-category"});
+    ipcRenderer.send("category-service", {
       action: "delete-category",
       payload: {
         category_code: codeCategory
       }
     });
-    if (deleted !== "error") {
-      dispatch("getCategories");
-    } else {
-      alert(`impossible de supprimer la categorie avec le code ${codeCategory}`)
-    }
+  },
+  deleteCategorySuccess({commit, dispatch}: any) {
+    dispatch("getCategories");
+    dispatch("deleteLoader", {"issuer": "delete-category"});
+  },
+  deleteCategoryError({commit, dispatch}: any, deletedCategoryCode: any) {
+    dispatch("deleteLoader", {"issuer": "delete-category"});
+    alert(`impossible de supprimer la categorie avec le code ${deletedCategoryCode}`)
   },
 
+
+  // edit category
   editCategory({commit, dispatch}: any, {categoryToUpdateCode, category}: any) {
-    const editedCategory: string = ipcRenderer.sendSync("category-service", {
+    dispatch("pushLoader", {"issuer": "edit-category"});
+    ipcRenderer.send("category-service", {
       action: "edit-category",
       payload: {
         categoryToUpdateCode,
         category
       }
     });
-    if(editedCategory === "success") {
-      dispatch("getCategories");
-    } else {
-      alert(`impossible de modifier la categorie ${category.category_code}`)
-    }
+  },
+  editCategorySuccess({commit, dispatch}: any) {
+    dispatch("getCategories");
+    dispatch("deleteLoader", {"issuer": "edit-category"});
+  },
+  editCategoryError({commit, dispatch}: any, editedCategoryCode: any) {
+    dispatch("deleteLoader", {"issuer": "edit-category"});
+    alert(`impossible de modifier la categorie ${editedCategoryCode}`)
   },
 
   // add category
@@ -79,12 +87,10 @@ const actions = {
       }
     });
   },
-
   addCategorySuccess({commit, dispatch}: any) {
       dispatch("deleteLoader", {"issuer": "add-category"});
       dispatch("getCategories");
   },
-
   addCategoryError({commit, dispatch}: any, errorMessage: string) {
       dispatch("deleteLoader", {"issuer": "add-category"});
       dispatch("getCategories");

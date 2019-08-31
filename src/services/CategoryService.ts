@@ -26,17 +26,17 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
     case "delete-category":
       try {
         await categoryRepo.delete({"category_code": payload.category_code});
-        event.returnValue = "success";
+        event.sender.send("category-service", {action, status: "success"});
       } catch (e) {
-        event.returnValue = "error";
+        event.sender.send("category-service", {action, status: "error", data: payload.category_code});
       }
       break;
     case "edit-category":
       try {
         await categoryRepo.update({"category_code": payload.categoryToUpdateCode}, payload.category);
-        event.returnValue = "success";
+        event.sender.send("category-service", {action, status: "success"});
       } catch (e) {
-        event.returnValue = "error";
+        event.sender.send("category-service", {action, status: "error", data: payload.categoryToUpdateCode});
       }
       break;
     case "add-category":
@@ -48,6 +48,6 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
       }
     break;
     default:
-      event.returnValue = "error";
+      event.sender.send("category-service", {action, status: "error", data: "unknown error"});
   }
 };

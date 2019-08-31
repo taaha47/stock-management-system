@@ -10,18 +10,33 @@ export function registerIpcRendererChannel(store: Store<any>, ...args: any[]): a
 function categoryManager(store: Store<any>, payload: any) {
     const {status, action, data} = payload;
     switch (action) {
-        case "add-category":
-            if (status === "success") {
-                store.dispatch("addCategorySuccess");
-            } else {
-                store.dispatch("addCategoryError");
-            }
-            break;
-        case "get-categories":
-            if (status === "success") {
-                store.dispatch("getCategoriesSuccess", data);
-            } else {
-                store.dispatch("getCategoriesError");
-            }
+      case "add-category":
+        if (status === "success") {
+          store.dispatch("addCategorySuccess");
+        } else {
+          store.dispatch("addCategoryError");
+        }
+        break;
+      case "get-categories":
+        if (status === "success") {
+          store.dispatch("getCategoriesSuccess", data);
+        } else {
+          store.dispatch("getCategoriesError");
+        }
+        break;
+      case "delete-category":
+        if (status === "success") {
+          store.dispatch("deleteCategorySuccess");
+        } else {
+          store.dispatch("deleteCategoryError", data);
+        }
+        break;
+      case "edit-category":
+        if (status === "success") {
+          store.dispatch("editCategorySuccess");
+        } else {
+          store.dispatch("editCategoryError", data);
+        }
+        break;
     }
 }
