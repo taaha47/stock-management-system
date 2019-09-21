@@ -11,13 +11,22 @@
       <Section sectionTitle="Liste des Categories"/>
       <CustomizedDatatable
         :headers="headers"
-        :deleteElement="deleteElement"
-        :ConfirmDeletePopup="$options.components.ConfirmDeleteElementPopup"
-        :editElement="editElement"
-        :EditElementFormPopup="$options.components.EditCategoryFormPopup"
         :data = "categoriesList"
-        deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cette catégorie ?"
-      ></CustomizedDatatable>
+      >
+        <template v-slot:delete="{element}">
+          <ConfirmDeleteElementPopup
+            deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cette catégorie ?"
+            :element="element"
+            :deleteElement="deleteElement"
+          />
+        </template>
+        <template v-slot:edit="{element}">
+          <EditCategoryFormPopup
+            :element="element"
+            :editElement="editElement"
+          />
+        </template>
+      </CustomizedDatatable>
     </v-flex>
     <v-flex lg12 md12>
       <AddCategoryForm
@@ -55,7 +64,6 @@
     headers: any = mockedDataTable.categories_header;
     categoriesList!: any;
     categoriesCount!: number;
-    showForm: boolean = false;
 
     deleteElement: Function = (id: any) => {
       this.$store.dispatch("deleteCategory", id.category_code);

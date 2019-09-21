@@ -11,13 +11,22 @@
       <Section sectionTitle="Liste des Articles"/>
       <CustomizedDatatable
         :headers="headers"
-        :deleteElement="deleteElement"
-        :ConfirmDeletePopup="$options.components.ConfirmDeleteElementPopup"
-        deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cet article ?"
-        :editElement="editElement"
-        :EditElementFormPopup="$options.components.EditProductFormPopup"
         :data = "productsList"
-      ></CustomizedDatatable>
+      >
+        <template v-slot:delete="{element}">
+          <ConfirmDeleteElementPopup
+            deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cet article ?"
+            :element="element"
+            :deleteElement="deleteElement"
+          />
+        </template>
+        <template v-slot:edit="{element}">
+          <EditProductFormPopup
+            :element="element"
+            :editElement="editElement"
+          />
+        </template>
+      </CustomizedDatatable>
     </v-flex>
     <v-flex lg12 md12>
       <AddProductForm
@@ -55,7 +64,6 @@
     headers: any = mockedDataTable.products_header;
     productsList!: any;
     productsCount!: number;
-    showForm: boolean = false;
 
     deleteElement: Function = (id: any) => {
       this.$store.dispatch("deleteProduct", id.product_code);
@@ -71,6 +79,6 @@
 
     created() {
       this.$store.dispatch("getProducts");
-    };
+    }
   }
 </script>

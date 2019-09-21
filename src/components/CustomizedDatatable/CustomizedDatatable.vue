@@ -25,24 +25,17 @@
           {{props.item[header.value]}}
         </td>
         <td
-          v-if="deleteElement || editElement"
           class="text-xs-right"
+          v-bind:key="props.item"
         >
-          <component
-            :key="generateKey()"
-            :is="ConfirmDeletePopup"
-            v-if="deleteElement"
-            :deleteElement="deleteElement"
-            :element="props.item"
-            :deleteConfirmationMessage="deleteConfirmationMessage"
-          ></component>
-          <component
-            :key="generateKey()"
-            :is="EditElementFormPopup"
-            v-if="editElement"
-            :editElement="editElement"
-            :element="props.item"
-          ></component>
+          <slot
+            name="delete"
+            v-bind:element="props.item"
+          ></slot>
+          <slot
+            name="edit"
+            v-bind:element="props.item"
+          ></slot>
         </td>
       </template>
       <template v-slot:no-results>
@@ -63,11 +56,6 @@
       @Prop({type: String, default: ""}) readonly search: string;
       @Prop() readonly headers: any;
       @Prop() readonly data: any;
-      @Prop() readonly deleteElement: Function;
-      @Prop() readonly ConfirmDeletePopup: any;
-      @Prop() readonly editElement: Function;
-      @Prop() readonly EditElementFormPopup: any;
-      @Prop() readonly deleteConfirmationMessage: string;
 
       generateKey() {
         return generateRandomKey();
