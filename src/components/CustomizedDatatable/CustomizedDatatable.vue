@@ -49,16 +49,11 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
-    import {generateRandomKey} from "../../helpers/functions";
 
     @Component
     export default class CustomizedDatatable extends Vue {
       @Prop({type: String, default: ""}) readonly search: string;
       @Prop() readonly headers: any;
       @Prop() readonly data: any;
-
-      generateKey() {
-        return generateRandomKey();
-      }
     }
 </script>
