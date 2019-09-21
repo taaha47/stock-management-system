@@ -17,6 +17,7 @@ export const ProductServiceCb: any = async (dbConnection: any, element: ipcPaylo
           .addSelect("product.product_packaging", "product_packaging")
           .addSelect("product.product_description", "product_description")
           .leftJoin("product.category", "category")
+          .addSelect("category.category_id", "category_id")
           .addSelect("category.category_code", "category_code")
           .addSelect("category.category_name", "category_name")
           .getRawMany();

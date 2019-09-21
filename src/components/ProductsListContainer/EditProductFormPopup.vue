@@ -110,7 +110,7 @@
   @Component({
     computed: {
       getegoriesCodesList: function() {
-        return store.getters.categories.map((cat: any) => ({value: cat.category_id, text: cat.category_name}));
+        return store.getters.categories.map((cat: any) => ({value: cat.id, text: cat.category_name}));
       }
     }
   })
