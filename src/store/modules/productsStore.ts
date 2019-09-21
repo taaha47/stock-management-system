@@ -10,7 +10,7 @@ const state: productsState = {
 };
 
 const getters = {
-  products: (state: productsState) => state.products.map(prd => ({...prd, ...prd.category})),
+  products: (state: productsState) => state.products,
   productsCount: (state: productsState) => state.products.length
 };
 

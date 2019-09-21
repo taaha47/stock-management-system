@@ -11,7 +11,8 @@ export const CategoryServiceCb: any = async (dbConnection: any, element: ipcPayl
     case "get-categories":
       try {
         const allCategories = await categoryRepo.createQueryBuilder( "category")
-          .select("category.category_code", "category_code")
+          .select("category.category_id", "id")
+          .addSelect("category.category_code", "category_code")
           .addSelect("category.category_name", "category_name")
           .addSelect("category.category_description", "category_description")
           .addSelect("COUNT(product.category.category_id)", "products_count")

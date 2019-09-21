@@ -26,7 +26,7 @@
         </td>
         <td
           class="text-xs-right"
-          v-bind:key="props.item"
+          v-bind:key="props.item.id"
         >
           <slot
             name="delete"
