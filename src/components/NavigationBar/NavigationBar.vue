@@ -1,17 +1,5 @@
 <template>
-  <div>
-    <v-btn
-      fab
-      flat
-      color="grey"
-      fixed
-      bottom
-      left
-      @click.stop="drawer = !drawer"
-    >
-      <v-icon>menu</v-icon>
-    </v-btn>
-    <v-navigation-drawer
+  <v-navigation-drawer
       v-model="drawer"
       :mini-variant="mini"
       permanent
@@ -88,7 +76,6 @@
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
-  </div>
 </template>
 
 <script lang="ts">

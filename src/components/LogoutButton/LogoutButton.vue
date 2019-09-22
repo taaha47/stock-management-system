@@ -7,7 +7,7 @@
       color="grey"
       fixed
       bottom
-      right
+      left
       :loading="loading"
     >
       <v-icon>logout</v-icon>
