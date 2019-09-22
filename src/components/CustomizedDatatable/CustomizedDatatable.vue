@@ -9,6 +9,7 @@
         hide-details
       ></v-text-field>
       <v-spacer></v-spacer>
+      <slot name="add"></slot>
     </v-card-title>
     <v-data-table
       :headers="headers"

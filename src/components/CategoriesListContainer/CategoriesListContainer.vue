@@ -13,6 +13,11 @@
         :headers="headers"
         :data = "categoriesList"
       >
+        <template v-slot:add>
+          <AddCategoryForm
+            :addElement="addElement"
+          />
+        </template>
         <template v-slot:delete="{element}">
           <ConfirmDeleteElementPopup
             deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cette catégorie ?"
@@ -27,11 +32,6 @@
           />
         </template>
       </CustomizedDatatable>
-    </v-flex>
-    <v-flex lg12 md12>
-      <AddCategoryForm
-        :addElement="addElement"
-      />
     </v-flex>
   </div>
 </template>
