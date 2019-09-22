@@ -13,6 +13,11 @@
         :headers="headers"
         :data = "productsList"
       >
+        <template v-slot:add>
+          <AddProductForm
+            :addElement="addElement"
+          />
+        </template>
         <template v-slot:delete="{element}">
           <ConfirmDeleteElementPopup
             deleteConfirmationMessage="Etes-vous sur de vouloir supprimer cet article ?"
@@ -27,11 +32,6 @@
           />
         </template>
       </CustomizedDatatable>
-    </v-flex>
-    <v-flex lg12 md12>
-      <AddProductForm
-        :addElement="addElement"
-      />
     </v-flex>
   </div>
 </template>
