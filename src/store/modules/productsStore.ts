@@ -21,18 +21,22 @@ const mutations = {
 };
 
 const actions = {
-  getProducts({commit, state}: any) {
-    const allProducts = ipcRenderer.sendSync("product-service", {
-      action: "get-products",
-      payload: {
-      }
+  // get all products
+  getProducts({commit, dispatch}: any) {
+    dispatch("pushLoader", {"issuer": "get-products"});
+    ipcRenderer.send("product-service", {
+      action: "get-products"
     });
-    if (allProducts && allProducts !== "error") {
-      commit("setProducts", allProducts);
-    } else {
-      alert("Impossible de lire les articles de la base de données")
-    }
   },
+  getProductsSuccess({commit, dispatch}: any, allProducts: any[]) {
+    commit("setProducts", allProducts);
+    dispatch("deleteLoader", {"issuer": "get-products"});
+  },
+  getProductsError({commit, dispatch}: any, errorMessage: string) {
+    dispatch("deleteLoader", {"issuer": "get-products"});
+    alert("Impossible de lire les articles de la base de données")
+  },
+
 
   deleteProduct({commit, dispatch}: any, codeProduct: string) {
     const deleted: string = ipcRenderer.sendSync("product-service", {

@@ -21,9 +21,9 @@ export const ProductServiceCb: any = async (dbConnection: any, element: ipcPaylo
           .addSelect("category.category_code", "category_code")
           .addSelect("category.category_name", "category_name")
           .getRawMany();
-        event.returnValue = allProducts;
+        event.sender.send("product-service", {action, status: "success", data: allProducts});
       } catch (e) {
-        event.returnValue = "error";
+        event.sender.send("product-service", {action, status: "error", data: e.message});
       }
       break;
     case "delete-product":
