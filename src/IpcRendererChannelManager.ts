@@ -4,6 +4,7 @@ import { Store } from "vuex";
 export function registerIpcRendererChannel(store: Store<any>, ...args: any[]): any {
   ipcRenderer.on("category-service", async (event: any, payload: any) => categoryManager(store, payload));
   ipcRenderer.on("product-service",(event: any, payload: any) => productManager(store, payload));
+  ipcRenderer.on("supplier-service", (event: any, payload: any) => supplierManager(store, payload));
 }
 
 function productManager(store: Store<any>, payload: any) {
@@ -53,4 +54,38 @@ function categoryManager(store: Store<any>, payload: any) {
         }
         break;
     }
+}
+
+function supplierManager(store: Store<any>, payload: any) {
+  const {status, action, data} = payload;
+  switch (action) {
+    case "add-supplier":
+      if (status === "success") {
+        store.dispatch("addSupplierSuccess");
+      } else {
+        store.dispatch("addSupplierError");
+      }
+      break;
+    case "get-suppliers":
+      if (status === "success") {
+        store.dispatch("getSuppliersSuccess", data);
+      } else {
+        store.dispatch("getSuppliersError");
+      }
+      break;
+    case "delete-supplier":
+      if (status === "success") {
+        store.dispatch("deleteSupplierSuccess");
+      } else {
+        store.dispatch("deleteSupplierError", data);
+      }
+      break;
+    case "edit-supplier":
+      if (status === "success") {
+        store.dispatch("editSupplierSuccess");
+      } else {
+        store.dispatch("editSupplierError", data);
+      }
+      break;
+  }
 }

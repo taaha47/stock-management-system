@@ -10,8 +10,7 @@ export const menu: any[] = [
         ]
     },
     { title: "Fournisseurs", icon: "local_activity", path: "", items: [
-            { title: "les des fournisseurs", path: "/about"},
-            { title: "ajouter un fournisseur", path: "/add-supplier"}
+            { title: "liste des fournisseurs", path: "/suppliers-list"}
         ]
     },
     { title: "Clients", icon: "local_activity", path: "", items: [
@@ -50,6 +49,12 @@ export const mockedDataTable: any = {
       { text: 'description', value: 'product_description', sortable: false},
       { text: 'catégorie', value: 'category_name', sortable: false },
       { text: 'code de la catégorie', value: 'category_code', sortable: false }
+    ],
+    suppliers_header: [
+      { text: 'Entreprise', value: 'supplier_company_name', sortable: false},
+      { text: 'Téléphone', value: 'supplier_tel', sortable: false},
+      { text: 'Email', value: 'supplier_email', sortable: false},
+      { text: 'date de création', value: 'created_at', sortable: true }
     ],
     headers: [
         { text: 'Code', value: 'name', sortable: false },

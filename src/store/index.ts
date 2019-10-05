@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import userStore from "./modules/userStore";
 import categoriesStore from "./modules/categoriesStore";
 import productsStore from "./modules/productsStore";
+import suppliersStore from "./modules/suppliersStore";
 import globalLoaderStore from "./modules/globalLoaderStore";
 
 Vue.use(Vuex);
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     userStore,
     categoriesStore,
     productsStore,
+    suppliersStore,
     globalLoaderStore
   }
 });

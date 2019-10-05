@@ -8,7 +8,7 @@ import {ipcPayload} from "./interfaces/interfaces";
 import { UserServiceCb } from "./services/UserService";
 import { CategoryServiceCb } from "./services/CategoryService";
 import { ProductServiceCb } from "./services/ProductService";
-
+import { SupplierServiceCb } from "./services/SupplierService";
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 let win: Electron.BrowserWindow | null;
@@ -99,5 +99,9 @@ ipcMain.on("category-service", async (event: any, payload: ipcPayload) =>
 
 ipcMain.on("product-service", async (event: any, payload: ipcPayload) =>
   ProductServiceCb(DatabaseConnection, payload, event)
+);
+
+ipcMain.on("supplier-service", async (event: any, payload: ipcPayload) =>
+  SupplierServiceCb(DatabaseConnection, payload, event)
 );
 

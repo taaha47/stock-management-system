@@ -34,7 +34,7 @@ const actions = {
   },
   getCategoriesError({commit, dispatch}: any, errorMessage: string) {
       dispatch("deleteLoader", {"issuer": "get-categories"});
-      alert("erreur lors de l ajout de cet article")
+      alert("erreur lors de la récupération de la liste des catégories")
   },
 
   // delete category

@@ -6,6 +6,7 @@ import DashboardLayout from "./components/DashboardLayout/DashboardLayout.vue";
 import Dashboard from "./components/DashboardContainer/Dashboard.vue";
 import CategoriesListContainer from "./components/CategoriesListContainer/CategoriesListContainer.vue";
 import ProductsListContainer from "./components/ProductsListContainer/ProductsListContainer.vue";
+import SuppliersListContainer from "./components/SuppliersListContainer/SuppliersListContainer.vue";
 import store from "./store";
 
 Vue.use(Router);
@@ -48,6 +49,11 @@ let router = new Router({
           path: "products-list",
           name: "products-list",
           component: ProductsListContainer
+        },
+        {
+          path: "suppliers-list",
+          name: "suppliers-list",
+          component: SuppliersListContainer
         }
       ]
     },
