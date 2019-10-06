@@ -70,8 +70,6 @@
     };
 
     editElement: Function = (supplierId: string, supplier: any) => {
-      console.log(supplierId);
-      console.log(supplier);
       this.$store.dispatch("editSupplier", {supplierId, supplier});
     };
 
