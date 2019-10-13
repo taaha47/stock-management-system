@@ -29,25 +29,25 @@ export const ProductServiceCb: any = async (dbConnection: any, element: ipcPaylo
     case "delete-product":
       try {
         await productRepo.delete({"product_code": payload.product_code});
-        event.returnValue = "success";
+        event.sender.send("product-service", {action, status: "success"});
       } catch (e) {
-        event.returnValue = "error";
+        event.sender.send("product-service", {action, status: "error", data: payload.product_code});
       }
       break;
     case "edit-product":
       try {
-        await productRepo.update({"product_code": payload.productToUpdateCode}, payload.product);
-        event.returnValue = "success";
+        await productRepo.update({"product_code": payload.product_code}, payload.product);
+        event.sender.send("product-service", {action, status: "success"});
       } catch (e) {
-        event.returnValue = "error";
+        event.sender.send("product-service", {action, status: "error", data: payload.product_code});
       }
       break;
     case "add-product":
       try {
         await productRepo.save(payload.product);
-        event.returnValue = "success";
+        event.sender.send("product-service", {action, status: "success"});
       } catch (e) {
-        event.returnValue = "error";
+        event.sender.send("product-service", {action, status: "error", data: e.message});
       }
       break;
     default:

@@ -38,48 +38,63 @@ const actions = {
   },
 
 
-  deleteProduct({commit, dispatch}: any, codeProduct: string) {
-    const deleted: string = ipcRenderer.sendSync("product-service", {
+  //delete a product
+  deleteProduct({commit, dispatch}: any, productCode: any) {
+    dispatch("pushLoader", {"issuer": "delete-product"});
+    ipcRenderer.send("product-service", {
       action: "delete-product",
       payload: {
-        product_code: codeProduct
+        product_code: productCode
       }
     });
-    if (deleted === "success") {
-      dispatch("getProducts");
-    } else {
-      alert(`impossible de supprimer l'article avec le code ${codeProduct}`)
-    }
+  },
+  deleteProductSuccess({commit, dispatch}: any) {
+    dispatch("getProducts");
+    dispatch("deleteLoader", {"issuer": "delete-product"});
+  },
+  deleteProductError({commit, dispatch}: any, deleteProductCode: any) {
+    dispatch("deleteLoader", {"issuer": "delete-product"});
+    alert(`impossible de supprimer le produit avec le code ${deleteProductCode}`)
   },
 
+  //edit a product
   editProduct({commit, dispatch}: any, {productToUpdateCode, product}: any) {
-    const editedProduct: string = ipcRenderer.sendSync("product-service", {
+    dispatch("pushLoader", {"issuer": "edit-product"});
+    ipcRenderer.send("product-service", {
       action: "edit-product",
       payload: {
-        productToUpdateCode,
+        product_code: productToUpdateCode,
         product
       }
     });
-    if(editedProduct === "success") {
-      dispatch("getProducts");
-    } else {
-      alert(`impossible de modifier l'article ${product.product_code}`)
-    }
+  },
+  editProductSuccess({commit, dispatch}: any) {
+    dispatch("getProducts");
+    dispatch("deleteLoader", {"issuer": "edit-product"});
+  },
+  editProductError({commit, dispatch}: any, editProductCode: any) {
+    dispatch("deleteLoader", {"issuer": "edit-product"});
+    alert(`impossible de modifier le produit avec le code ${editProductCode}`)
   },
 
+  //add a product
   addProduct({commit, dispatch}: any, product: any) {
-    const addedProduct: string = ipcRenderer.sendSync("product-service", {
+    dispatch("pushLoader", {"issuer": "add-product"});
+    ipcRenderer.send("product-service", {
       action: "add-product",
       payload: {
         product
       }
     });
-    if (addedProduct === "success") {
-      dispatch("getProducts");
-      alert(`l'article ${product.product_code} a été ajoutée avec succès`);
-    } else {
-      alert("impossible d'ajouter cet article");
-    }
+  },
+  addProductSuccess({commit, dispatch}: any) {
+    dispatch("deleteLoader", {"issuer": "add-product"});
+    dispatch("getProducts");
+  },
+  addProductError({commit, dispatch}: any, errorMessage: string) {
+    dispatch("deleteLoader", {"issuer": "add-product"});
+    dispatch("getProducts");
+    alert("operation impossible");
   }
 };
 

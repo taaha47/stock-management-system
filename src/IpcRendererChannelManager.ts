@@ -17,6 +17,27 @@ function productManager(store: Store<any>, payload: any) {
         store.dispatch("getProductsError");
       }
       break;
+    case "delete-product":
+      if (status === "success") {
+        store.dispatch("deleteProductSuccess");
+      } else {
+        store.dispatch("deleteProductError", data);
+      }
+      break;
+    case "edit-product":
+      if (status === "success") {
+        store.dispatch("editProductSuccess");
+      } else {
+        store.dispatch("editProductError", data);
+      }
+      break;
+    case "add-product":
+      if (status === "success") {
+        store.dispatch("addProductSuccess");
+      } else {
+        store.dispatch("addProductError");
+      }
+      break;
     default:
       break;
   }

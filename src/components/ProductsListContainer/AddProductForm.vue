@@ -56,7 +56,7 @@
             </v-flex>
             <v-flex xs12 sm6 md6>
               <v-select
-                :items="getCategoriesCodesList"
+                :items="categoriesCodesList"
                 label="Catégorie de l'article"
                 hint="Choisir le code de la catégorie pour cet article"
                 required
@@ -101,23 +101,16 @@
   import Section from "../Section/Section.vue";
   import store from "../../store";
 
-  @Component({
-    components: {Section},
-    computed: {
-      getCategoriesCodesList: function() {
-        return store.getters.categories.map((cat: any) => ({value: cat.id, text: cat.category_name}));
-      }
-    }
-  })
+  @Component
   export default class AddProductForm extends Vue{
     @Prop() readonly addElement: Function;
+    @Prop() readonly categoriesCodesList: any;
 
     productCode: string = "";
     productName: string = "";
     productPackaging: string = "";
     productDescription: string = "";
     productCategoryId: string = "";
-    getCategoriesCodesList!: any[];
     rules: any[] = [(v: boolean) => !!v || "Ce champ est obligatoire"];
     valid: boolean = false;
     dialog: boolean = false;
@@ -131,10 +124,6 @@
         "category": this.productCategoryId
       });
       this.dialog = false;
-    }
-
-    created() {
-      this.$store.dispatch("getCategories");
     }
   }
 </script>

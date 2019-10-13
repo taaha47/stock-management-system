@@ -16,6 +16,7 @@
         <template v-slot:add>
           <AddProductForm
             :addElement="addElement"
+            :categoriesCodesList="categoriesCodesList"
           />
         </template>
         <template v-slot:delete="{element}">
@@ -29,6 +30,7 @@
           <EditProductFormPopup
             :element="element"
             :editElement="editElement"
+            :categoriesCodesList="categoriesCodesList"
           />
         </template>
       </CustomizedDatatable>
@@ -57,6 +59,9 @@
       },
       productsCount: function() {
         return store.getters.productsCount;
+      },
+      categoriesCodesList: function() {
+        return store.getters.categories.map((cat: any) => ({value: cat.id, text: cat.category_name}));
       }
     }
   })
@@ -64,6 +69,7 @@
     headers: any = mockedDataTable.products_header;
     productsList!: any;
     productsCount!: number;
+    categoriesCodesList!: any;
 
     deleteElement: Function = (id: any) => {
       this.$store.dispatch("deleteProduct", id.product_code);
@@ -79,6 +85,7 @@
 
     created() {
       this.$store.dispatch("getProducts");
+      this.$store.dispatch("getCategories");
     }
   }
 </script>
