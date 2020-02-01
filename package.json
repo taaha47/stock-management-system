@@ -19,7 +19,7 @@
     "@types/node": "^12.0.0",
     "bcryptjs": "^2.4.3",
     "core-js": "^2.6.5",
-    "knex": "^0.16.5",
+    "knex": "^0.19.5",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^4.0.7",
     "typeorm": "^0.2.18",
